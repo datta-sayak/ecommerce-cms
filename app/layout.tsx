@@ -12,6 +12,56 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+// Organization Schema for JSON-LD
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Soujata Exim",
+  url: "https://soujataexim.com",
+  logo: "https://soujataexim.com/logo.png",
+  description: "Trusted Indian manufacturer and exporter of eco-friendly, sustainable bags made from jute, cotton, and canvas.",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Kalachand Para",
+    addressLocality: "Duttapukur",
+    addressRegion: "West Bengal",
+    postalCode: "743248",
+    addressCountry: "IN",
+  },
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "Sales",
+    telephone: "+91-96742-54091",
+    email: "info@soujataexim.com",
+  },
+  sameAs: [
+    "https://www.facebook.com/soujataexim",
+    "https://www.linkedin.com/in/soujata-exim-69037425a/",
+    "https://www.instagram.com/soujataexim",
+  ],
+};
+
+// Local Business Schema for JSON-LD
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: "Soujata Exim",
+  image: "https://soujataexim.com/logo.png",
+  description: "Manufacturer & Exporter of Eco-friendly Jute Bags, Cotton Bags, Canvas Bags, Pouches",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Kalachand Para",
+    addressLocality: "Duttapukur",
+    addressRegion: "West Bengal",
+    postalCode: "743248",
+    addressCountry: "IN",
+  },
+  telephone: "+91-96742-54091",
+  email: "info@soujataexim.com",
+  priceRange: "$$",
+  areaServed: ["US", "DE", "MY", "DO", "ES", "MX"],
+};
+
 export const metadata: Metadata = {
   title: "Soujata Exim - Eco-Friendly Jute, Cotton & Canvas Bags Manufacturer | India Exporter",
   description: "Leading Indian manufacturer & exporter of sustainable jute bags, cotton totes, canvas bags & eco-friendly packaging solutions. Custom designs, low MOQs, export ready.",
@@ -40,12 +90,6 @@ export const metadata: Metadata = {
       },
     ],
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Soujata Exim - Eco-Friendly Bags Manufacturer from India",
-    description: "Sustainable jute, cotton & canvas bags. Custom designs, low MOQs, export-ready.",
-    images: ["https://soujataexim.com/og-image.jpg"],
-  },
   robots: {
     index: true,
     follow: true,
@@ -59,6 +103,10 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "https://soujataexim.com",
+  },
+  other: {
+    "application/ld+json": JSON.stringify(organizationSchema),
+    "application/ld+json:local-business": JSON.stringify(localBusinessSchema),
   },
 };
 
