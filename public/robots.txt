@@ -1,0 +1,9 @@
+# Robots.txt for Soujata Exim
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /private
+Disallow: /api/
+
+Sitemap: https://soujataexim.com/sitemap.xml
+Crawl-delay: 1
