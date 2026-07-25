@@ -14,7 +14,7 @@ export default function Header() {
           {/* Logo */}
           <div className="flex items-center gap-2">
             <Image
-              src="/vector.png"
+              src="/LOGO.png"
               alt="Soujata Exim Logo"
               width={40}
               height={40}
