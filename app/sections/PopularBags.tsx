@@ -2,48 +2,47 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { ChevronRight } from 'lucide-react';
 
 const popularBags = [
   {
     id: 1,
-    name: 'Jute Shopping Bag (SB-JW-01)',
-    size: 'Size: 34 x 43 + 18 cm',
-    description: 'Natural jute tote bag, perfect for groceries and daily use. Customizable with screen printing. 100% natural jute fiber.',
+    category: 'Jute Bag',
+    name: 'Shopping Product',
+    code: 'SB-JW-16',
+    size: 'H 34 x W 43 + G 20 cm',
+    description: 'Eco-friendly jute bag, perfect for daily use. Durable and sustainable.',
+    rating: 4.5,
     image: '/jute-bag.png',
   },
   {
     id: 2,
-    name: 'Jute Beach Bag (BB-JW-01)',
-    size: 'Size: 36 x 46 + 14 cm',
-    description: 'Large capacity jute bag for beach, travel, and retail. Durable, eco-friendly, and stylish with reinforced handles.',
+    category: 'Jute Bag',
+    name: 'Fruit & Vegetable Bag',
+    code: 'FV-JW-03',
+    size: '18×20 cm & 18×30 cm',
+    description: 'Reusable jute bags for grocery shopping. Available in two sizes.',
+    rating: 4.6,
     image: '/jute-bag.png',
   },
   {
     id: 3,
-    name: '2 Bottle Jute Wine Bag (WB-JW-05)',
-    size: 'Size: 36 x 46 + 14 cm',
-    description: 'Large capacity jute bag for beach, travel, and retail. Durable, eco-friendly, and stylish with reinforced handles.',
+    category: 'Jute Bag',
+    name: 'Jute 2 Bottle Bag',
+    code: 'WB-JW-05',
+    size: 'H 35 x W 20 x G 10 cm',
+    description: 'Perfect for carrying two wine or water bottles. Sturdy jute construction.',
+    rating: 4.3,
     image: '/jute-bag.png',
   },
   {
     id: 4,
-    name: 'Jute Fruit & Vegetable Bag (FV-JW-01)',
-    size: 'Size: 36 x 46 + 14 cm',
-    description: 'Large capacity jute bag for beach, travel, and retail. Durable, eco-friendly, and stylish with reinforced handles.',
-    image: '/jute-bag.png',
-  },
-  {
-    id: 5,
-    name: 'Cotton Tote Bag (CB-JW-01)',
-    size: 'Size: 36 x 46 + 14 cm',
-    description: 'Large capacity jute bag for beach, travel, and retail. Durable, eco-friendly, and stylish with reinforced handles.',
-    image: '/jute-bag.png',
-  },
-  {
-    id: 6,
-    name: 'Cotton Drawstring Bag (CB-JW-05)',
-    size: 'Size: 36 x 46 + 14 cm',
-    description: 'Lightweight cotton drawstring bag. Perfect for gifting, events, and promotional giveaways. Custom printing.',
+    category: 'Cotton Bags',
+    name: 'Shopping Bag',
+    code: 'CB-JW-04',
+    size: 'H 42 x W 38 x G 12',
+    description: 'Soft cotton bags with spacious interior. Ideal for everyday shopping.',
+    rating: 4.8,
     image: '/jute-bag.png',
   },
 ];
@@ -72,33 +71,51 @@ export default function PopularBags() {
         </div>
 
         {/* Product Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6 lg:gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 lg:gap-8 mb-12">
           {popularBags.map((bag) => (
             <div
               key={bag.id}
-              className="bg-white rounded-lg overflow-hidden border border-bg-light hover:border-primary-green transition-all hover:shadow-lg"
+              className="bg-white rounded-lg md:rounded-xl overflow-hidden border border-gray-200 hover:shadow-xl transition-all duration-300 flex flex-row"
             >
               {/* Image Container */}
-              <div className="relative h-56 md:h-64 bg-gray-100 flex items-center justify-center overflow-hidden">
-                <div className="w-full h-full bg-gray-200"></div>
+              <div className="relative w-42 sm:w-50 md:w-58 bg-black/20 flex items-center justify-center flex-shrink-0">
+                {/* Placeholder for actual image */}
               </div>
 
               {/* Content */}
-              <div className="p-6">
-                <h3 className="text-sm md:text-lg font-bold text-primary-dark mb-2">
+              <div className="flex-1 p-3 sm:p-4 md:p-6 flex flex-col">
+                {/* Category and Rating Header */}
+                <span className="text-xs sm:text-sm text-gray-600 font-medium">
+                  {bag.category}
+                </span>
+
+                {/* Product Name */}
+                <h3 className="text-sm sm:text-base md:text-xl font-bold text-gray-900 mb-2 md:mb-3">
                   {bag.name}
                 </h3>
-                <p className="hidden md:block text-sm text-text-muted mb-3">
-                  {bag.size}
+
+                {/* Code */}
+                <p className="text-xs sm:text-sm text-gray-600 mb-1">
+                  <span className="font-semibold">Code:</span> {bag.code}
                 </p>
-                <p className="hidden md:block text-sm text-text-muted mb-4 leading-relaxed">
-                  {bag.description}
+
+                {/* Size */}
+                <p className="text-xs sm:text-sm text-gray-600 mb-2 md:mb-3">
+                  <span className="font-semibold">Size:</span> {bag.size}
                 </p>
+
+                {/* Description */}
+                <p className="text-xs sm:text-sm text-gray-600 mb-3 md:mb-4 leading-relaxed flex-grow">
+                  <span className="font-semibold">Description:</span> {bag.description}
+                </p>
+
+                {/* Explore Link */}
                 <Link
                   href={`/products/${bag.id}`}
-                  className="inline-flex items-center text-xs md:text-base text-primary-green font-semibold hover:text-primary-dark transition"
+                  className="inline-flex items-center text-xs sm:text-sm md:text-base text-emerald-600 font-semibold hover:text-emerald-700 transition group"
                 >
-                  Explore the Product <span className="ml-1">›</span>
+                  Explore the Product 
+                  <ChevronRight className="w-5 h-5" />
                 </Link>
               </div>
             </div>
@@ -109,9 +126,10 @@ export default function PopularBags() {
         <div className="flex justify-center">
           <Link
             href="/products"
-            className="bg-primary-green text-white px-8 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition"
+            className="inline-flex items-center bg-primary-green text-white px-8 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition"
           >
-            View All Products ›
+            View All Products
+            <ChevronRight className="w-5 h-5" />
           </Link>
         </div>
       </div>
