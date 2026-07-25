@@ -1,44 +1,21 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
 import Image from 'next/image';
-
-const craftImages = [
-  '/craft-1.jpg',
-  '/craft-2.jpg',
-  '/craft-3.jpg',
-  '/craft-4.jpg',
-  '/craft-5.jpg',
-];
+import { Marquee, MarqueeContent, MarqueeItem } from '@/components/kibo-ui/marquee';
+import { useEffect, useState } from 'react';
 
 export default function BehindOurCraft() {
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-
+  const [craftImages, setCraftImages] = useState<string[]>([]);
   useEffect(() => {
-    const container = scrollContainerRef.current;
-    if (!container) return;
-
-    let scrollSpeed = 1;
-    let animationId: number;
-
-    const autoScroll = () => {
-      if (container) {
-        container.scrollLeft += scrollSpeed;
-
-        // Reset to start when reaching halfway (for infinite loop effect)
-        if (container.scrollLeft >= container.scrollWidth / 2) {
-          container.scrollLeft = 0;
-        }
-      }
-      animationId = requestAnimationFrame(autoScroll);
-    };
-
-    animationId = requestAnimationFrame(autoScroll);
-
-    return () => {
-      cancelAnimationFrame(animationId);
-    };
+    const images = [];
+    for (let i = 1; i <= 5; i++) {
+      images.push(`/images/img${i}.jpg`);
+    }
+    setCraftImages(images);
   }, []);
+  useEffect(() => {
+    console.log(craftImages);
+  }, [craftImages]);
 
   return (
     <section className="relative bg-white py-16 md:py-24">
@@ -64,34 +41,25 @@ export default function BehindOurCraft() {
           </div>
         </div>
 
-        {/* Auto-scrolling Image Carousel - Full Width */}
-        <div className="overflow-hidden">
-          <div
-            ref={scrollContainerRef}
-            className="flex gap-4 md:gap-6 overflow-x-scroll pl-4 md:pl-8 lg:pl-12"
-            style={{
-              scrollbarWidth: 'none',
-              msOverflowStyle: 'none',
-            }}
-          >
-            {/* Duplicate images for infinite loop effect */}
-            {[...craftImages, ...craftImages].map((image, index) => (
-              <div
-                key={index}
-                className="flex-shrink-0 w-64 md:w-80 h-64 md:h-80 rounded-lg overflow-hidden"
+        <Marquee className="overflow-hidden">
+          <MarqueeContent>
+            {craftImages.map((image, i) => (
+              <MarqueeItem
+                key={i}
+                className="relative flex-shrink-0 w-50 md:w-70 h-70 md:h-96 rounded-lg mr-4 overflow-hidden"
               >
-                <div className="relative w-full h-full bg-gray-200"></div>
-              </div>
+                <Image
+                  src={image}
+                  alt={`Craft process ${i + 1}`}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 256px, 320px"
+                />
+              </MarqueeItem>
             ))}
-          </div>
-        </div>
+          </MarqueeContent>
+        </Marquee>
       </div>
-
-      <style jsx>{`
-        div::-webkit-scrollbar {
-          display: none;
-        }
-      `}</style>
     </section>
   );
 }
