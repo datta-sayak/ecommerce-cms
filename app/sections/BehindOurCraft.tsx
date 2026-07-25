@@ -18,7 +18,7 @@ export default function BehindOurCraft() {
   }, [craftImages]);
 
   return (
-    <section className="relative bg-white py-16 md:py-24">
+    <section className="relative bg-white py-8 md:py-14">
       {/* Background Image */}
       <Image
         src="/background-detail.png"
