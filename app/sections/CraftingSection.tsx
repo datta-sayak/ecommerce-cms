@@ -1,6 +1,6 @@
 'use client';
 
-import { CheckCircle, Package, Map, TrendingUp, ChevronRight } from 'lucide-react';
+import { CheckCircle, ChevronRight } from 'lucide-react';
 
 export default function CraftingSection() {
   return (
@@ -43,12 +43,41 @@ export default function CraftingSection() {
             </button>
           </div>
 
-          {/* Right Content - Placeholder Images */}
-          <div className="grid grid-cols-2 gap-4">
-            <div className="bg-gray-200 h-48 rounded-lg"></div>
-            <div className="bg-gray-200 h-48 rounded-lg"></div>
-            <div className="bg-gray-200 h-48 rounded-lg"></div>
-            <div className="bg-gray-200 h-48 rounded-lg"></div>
+          {/* Right Content - Bento Grid Images */}
+          <div className="grid grid-cols-2 gap-4 h-[450px] md:h-[550px]">
+            {/* Left Column */}
+            <div className="flex flex-col gap-4">
+              {/* Large square box */}
+              <div className="flex-1 bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow">
+                <div className="w-full h-full flex items-center justify-center text-gray-400">
+                  Featured
+                </div>
+              </div>
+              
+              {/* Small horizontal box - bottom left */}
+              <div className="h-24 md:h-32 bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow">
+                <div className="w-full h-full flex items-center justify-center text-gray-400 text-sm">
+                  Detail
+                </div>
+              </div>
+            </div>
+            
+            {/* Right Column */}
+            <div className="flex flex-col gap-4">
+              {/* Small horizontal box - top right */}
+              <div className="h-24 md:h-32 bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow">
+                <div className="w-full h-full flex items-center justify-center text-gray-400 text-sm">
+                  Process
+                </div>
+              </div>
+              
+              {/* Tall vertical box */}
+              <div className="flex-1 bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow">
+                <div className="w-full h-full flex items-center justify-center text-gray-400">
+                  Showcase
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 

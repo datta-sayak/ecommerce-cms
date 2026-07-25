@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { ChevronRight } from 'lucide-react';
 
 const categories = [
   {
@@ -62,21 +63,10 @@ export default function ProductCategories() {
           {categories.map((category) => (
             <div
               key={category.id}
-              className={`bg-white rounded-lg overflow-hidden transition-all hover:shadow-lg ${
-                category.featured
-                  ? 'border-4 border-blue-500 shadow-lg'
-                  : 'border border-bg-light hover:border-primary-green'
-              }`}
-            >
+              className="bg-white border-2 border-bg-light rounded-lg overflow-hidden transition-all hover:shadow-lg">
               {/* Image Container */}
               <div className="relative h-56 md:h-64 bg-gray-100 flex items-center justify-center overflow-hidden">
-                <Image
-                  src={category.image}
-                  alt={category.name}
-                  width={250}
-                  height={250}
-                  className="object-cover w-full h-full"
-                />
+                {/* product image */}
               </div>
 
               {/* Content */}
@@ -91,7 +81,8 @@ export default function ProductCategories() {
                   href={`/products/${category.id}`}
                   className="inline-flex items-center text-xs md:text-base text-primary-green font-semibold hover:text-primary-dark transition"
                 >
-                  Explore <span className="ml-1">›</span>
+                  Explore 
+                  <ChevronRight className="w-5 h-5" />
                 </Link>
               </div>
             </div>

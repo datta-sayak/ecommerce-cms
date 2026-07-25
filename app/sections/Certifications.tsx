@@ -49,7 +49,7 @@ export default function Certifications() {
           {certifications.map((cert) => (
             <div
               key={cert.id}
-              className="flex items-center justify-center flex-1 min-w-[100px]"
+              className="flex items-center justify-center flex-1 min-w-[60px]"
             >
               <Image
                 src={cert.image}
