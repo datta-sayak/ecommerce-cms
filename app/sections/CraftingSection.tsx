@@ -48,34 +48,26 @@ export default function CraftingSection() {
             {/* Left Column */}
             <div className="flex flex-col gap-4">
               {/* Large square box */}
-              <div className="flex-1 bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-                <div className="w-full h-full flex items-center justify-center text-gray-400">
-                  Featured
-                </div>
+              <div className="flex-1 bg-black/20 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow">
+                {/* image */}
               </div>
               
               {/* Small horizontal box - bottom left */}
-              <div className="h-24 md:h-32 bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-                <div className="w-full h-full flex items-center justify-center text-gray-400 text-sm">
-                  Detail
-                </div>
+              <div className="h-24 md:h-32 bg-black/20 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow">
+                {/* image */}
               </div>
             </div>
             
             {/* Right Column */}
             <div className="flex flex-col gap-4">
               {/* Small horizontal box - top right */}
-              <div className="h-24 md:h-32 bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-                <div className="w-full h-full flex items-center justify-center text-gray-400 text-sm">
-                  Process
-                </div>
+              <div className="h-24 md:h-32 bg-black/20 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow">
+                {/* image */}
               </div>
               
               {/* Tall vertical box */}
-              <div className="flex-1 bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-                <div className="w-full h-full flex items-center justify-center text-gray-400">
-                  Showcase
-                </div>
+              <div className="flex-1 bg-black/20 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow">
+                {/* image */}
               </div>
             </div>
           </div>
