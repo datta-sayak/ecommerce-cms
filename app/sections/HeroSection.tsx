@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { ChevronRight } from 'lucide-react';
 
 export default function HeroSection() {
   return (
@@ -45,15 +46,17 @@ export default function HeroSection() {
               <div className="flex gap-2 md:gap-4 flex-nowrap pb-4 md:pb-0">
                 <Link
                   href="/products"
-                  className="px-4 md:px-8 py-2 md:py-3 rounded-lg font-semibold text-white bg-primary-green transition-opacity hover:opacity-90 text-sm md:text-base whitespace-nowrap"
+                  className="flex items-center px-4 md:px-8 py-1 md:py-2 rounded-lg font-semibold text-white bg-primary-green transition-opacity hover:opacity-90 text-sm md:text-base whitespace-nowrap"
                 >
-                  View Products →
+                  View Products
+                  <ChevronRight className="w-5 h-5" />
                 </Link>
                 <Link
                   href="/contact"
-                  className="bg-white px-4 md:px-8 py-2 md:py-3 rounded-lg font-semibold transition-colors border-2 border-primary-dark text-primary-dark hover:bg-primary-dark hover:text-white text-sm md:text-base whitespace-nowrap"
+                  className="flex items-center bg-white px-4 md:px-8 py-1 md:py-2 rounded-lg font-semibold transition-colors border-2 border-primary-dark text-primary-dark hover:bg-primary-dark hover:text-white text-sm md:text-base whitespace-nowrap"
                 >
-                  Contact Us →
+                  Contact Us
+                  <ChevronRight className="w-5 h-5" />
                 </Link>
               </div>
             </div>

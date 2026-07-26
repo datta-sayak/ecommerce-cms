@@ -29,13 +29,13 @@ export default function Header() {
 
           {/* Navigation - Desktop */}
           <nav className="hidden lg:flex items-center gap-8">
-            <Link href="/" className="text-sm text-gray-700 hover:text-primary-green hover:font-bold transition font-medium">
+            <Link href="/" className="text-lg w-28 text-center text-gray-700 hover:text-primary-green hover:font-bold transition font-medium">
               Home
             </Link>
-            <Link href="/about" className="text-sm text-gray-700 hover:text-primary-green hover:font-bold transition font-medium">
+            <Link href="/about" className="text-lg w-28 text-center text-gray-700 hover:text-primary-green hover:font-bold transition font-medium">
               About Us
             </Link>
-            <Link href="/products" className="text-sm text-gray-700 hover:text-primary-green hover:font-bold transition font-medium">
+            <Link href="/products" className="text-lg w-28 text-center text-gray-700 hover:text-primary-green hover:font-bold transition font-medium">
               Products
             </Link>
           </nav>
