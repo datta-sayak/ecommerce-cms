@@ -1,5 +1,6 @@
 'use client';
 
+import { cn } from '@/lib/utils';
 import Image from 'next/image';
 
 const certifications = [
@@ -7,26 +8,31 @@ const certifications = [
     id: 1,
     name: 'Government of India',
     image: '/assets/goi.png',
+    scale: "scale-130",
   },
   {
     id: 2,
     name: 'EXIM',
     image: '/assets/exim.png',
+    scale: "scale-100",
   },
   {
     id: 3,
     name: 'Make in India',
     image: '/assets/makeinindia.png',
+    scale: "scale-110",
   },
   {
     id: 4,
     name: 'MSME',
     image: '/assets/msme.png',
+    scale: "scale-130",
   },
   {
     id: 5,
     name: 'FIEO',
     image: '/assets/fieo.png',
+    scale: "scale-100",
   },
 ];
 
@@ -49,14 +55,17 @@ export default function Certifications() {
           {certifications.map((cert) => (
             <div
               key={cert.id}
-              className="flex items-center justify-center flex-1 min-w-[60px]"
+              className="flex items-center justify-center flex-1 min-w-[60px] overflow-hidden"
             >
               <Image
                 src={cert.image}
                 alt={cert.name}
-                width={140}
-                height={140}
-                className="object-contain"
+                width={160}
+                height={100}
+                className={cn(
+                  "w-[100px] h-[40px] lg:w-[160px] lg:h-[100px] object-contain",
+                  cert.scale
+                )}
               />
             </div>
           ))}
