@@ -5,9 +5,9 @@ import Image from 'next/image';
 
 export default function HeroSection() {
   return (
-    <section className="relative overflow-hidden">
+    <section className="relative min-h-screen overflow-hidden">
       {/* Hero Background with Image */}
-      <div className="relative flex flex-col justify-center pt-12 pb-0 px-4 md:px-8 lg:px-12 bg-[#f9f9f9] overflow-hidden">
+      <div className="relative min-h-screen flex flex-col justify-start pt-0 -translate-y-18 px-4 md:px-8 lg:px-12 bg-[#f9f9f9] overflow-hidden">
         {/* Background Image */}
         <Image
           src="/background-detail.png"
@@ -18,23 +18,18 @@ export default function HeroSection() {
         />
 
         {/* Content */}
-        <div className="relative z-10 max-w-7xl mx-auto w-full">
-          {/* Badge */}
-          <div className="mb-6 inline-block">
-            <div className="px-4 py-2 rounded-full border-2 border-primary-green text-sm font-semibold text-primary-green flex items-center gap-2">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
-              </svg>
-
-              Certified Sustainable Manufacturer
-            </div>
-          </div>
-
+        <div className="relative mt-25 z-10 max-w-7xl mx-auto w-full">
           {/* Main Content Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 items-center">
             {/* Left Side - Text Content */}
             <div>
-              <h1 className="text-4xl md:text-7xl font-bold whitespace-nowrap">
+              <div className="inline-flex items-center bg-[#05DF7226] px-4 py-2 rounded-full border-2 border-primary-green text-sm font-semibold text-primary-green flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
+                </svg>
+                Certified Sustainable Manufacturer
+              </div>
+              <h1 className="text-4xl md:text-7xl mt-8 font-bold whitespace-nowrap">
                 <span className="text-primary-dark">Sustainable Bags for a</span>
                 <br />
                 <span className="text-primary-green">Greener Future</span>
@@ -71,7 +66,7 @@ export default function HeroSection() {
                 alt="Hero Bag Background"
                 width={280}
                 height={350}
-                className="absolute rounded-lg shadow-lg object-cover w-full max-w-sm -z-10"
+                className="scale-110 absolute rounded-lg shadow-lg object-cover w-full max-w-sm -z-10"
                 priority
               />
               
@@ -81,7 +76,7 @@ export default function HeroSection() {
                 alt="Sustainable Jute Bags Product"
                 width={500}
                 height={500}
-                className="absolute object-cover w-full max-w-lg h-full relative z-10"
+                className="scale-115 absolute object-cover w-full max-w-lg h-full lg:-mr-18 relative z-10"
                 priority
               />
             </div>
@@ -89,7 +84,7 @@ export default function HeroSection() {
         </div>
 
         {/* Stats Section */}
-        <div className="border-2 border-bg-light relative z-20 bg-white w-screen -mx-4 md:-mx-8 lg:-mx-12 px-4 md:px-8 lg:px-12 py-4 md:py-8">
+        <div className="absolute bottom-0 border-2 border-bg-light z-20 bg-white w-screen -mx-4 md:-mx-8 lg:-mx-12 px-4 md:px-8 lg:px-12 py-4 md:py-6">
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
             <div className="flex items-center gap-2 md:gap-4">
