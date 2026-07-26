@@ -14,7 +14,7 @@ export default function Footer() {
           <div>
             <div className="flex items-center gap-3 mb-8">
               <Image
-                src="/LOGO.png"
+                src="/logo.png"
                 alt="Soujata Exim Logo"
                 width={40}
                 height={40}
