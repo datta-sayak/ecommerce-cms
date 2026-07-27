@@ -1,4 +1,6 @@
 import { postgresAdapter } from "@payloadcms/db-postgres";
+import { cloudStoragePlugin } from "@payloadcms/plugin-cloud-storage";
+import { cloudinaryAdapter, cloudinaryConfig } from "@/utils/cloudinaryAdapter";
 import path from "path";
 import { buildConfig } from "payload";
 import { fileURLToPath } from "url";
@@ -38,5 +40,17 @@ export default buildConfig({
     },
   }),
   sharp,
-  plugins: [],
+  plugins: [
+      cloudStoragePlugin({
+        collections: {
+          media: {
+            adapter: cloudinaryAdapter,
+            disableLocalStorage: true,
+            generateFileURL: ({ filename }) => {
+              return cloudinaryConfig.url(filename, { secure: true })
+            },
+          },
+        },
+      }),
+    ],
 });
