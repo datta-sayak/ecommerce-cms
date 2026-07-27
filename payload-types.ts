@@ -170,8 +170,8 @@ export interface Media {
 export interface Category {
   id: number;
   name: string;
-  slug: string;
   description?: string | null;
+  coverImage: number | Media;
   updatedAt: string;
   createdAt: string;
 }
@@ -181,20 +181,19 @@ export interface Category {
  */
 export interface Product {
   id: number;
-  title: string;
-  slug: string;
+  name: string;
   category: number | Category;
-  shortDescription?: string | null;
-  description: string;
-  featuredImage: number | Media;
+  shortDescription: string;
+  longDescription?: string | null;
+  coverImage: number | Media;
   gallery?: (number | Media)[] | null;
-  specifications?:
-    | {
-        label?: string | null;
-        value?: string | null;
-        id?: string | null;
-      }[]
-    | null;
+  specifications: {
+    code?: string | null;
+    fabric?: string | null;
+    height: number;
+    width: number;
+    unit: 'cm' | 'm' | 'inch';
+  };
   featured?: boolean | null;
   active?: boolean | null;
   updatedAt: string;
@@ -326,8 +325,8 @@ export interface MediaSelect<T extends boolean = true> {
  */
 export interface CategorySelect<T extends boolean = true> {
   name?: T;
-  slug?: T;
   description?: T;
+  coverImage?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -336,19 +335,20 @@ export interface CategorySelect<T extends boolean = true> {
  * via the `definition` "products_select".
  */
 export interface ProductsSelect<T extends boolean = true> {
-  title?: T;
-  slug?: T;
+  name?: T;
   category?: T;
   shortDescription?: T;
-  description?: T;
-  featuredImage?: T;
+  longDescription?: T;
+  coverImage?: T;
   gallery?: T;
   specifications?:
     | T
     | {
-        label?: T;
-        value?: T;
-        id?: T;
+        code?: T;
+        fabric?: T;
+        height?: T;
+        width?: T;
+        unit?: T;
       };
   featured?: T;
   active?: T;

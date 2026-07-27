@@ -15,14 +15,15 @@ export const Categories: CollectionConfig = {
       required: true,
     },
     {
-      name: 'slug',
-      type: 'text',
-      required: true,
-      unique: true,
-    },
-    {
       name: 'description',
       type: 'textarea',
+    },
+    {
+      name: 'coverImage',
+      type: 'upload',
+      relationTo: 'media',
+      required: true,
+      hasMany: false,
     },
   ],
 }

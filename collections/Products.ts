@@ -13,21 +13,15 @@ export const Products: CollectionConfig = {
   },
 
   admin: {
-    useAsTitle: 'title',
-    defaultColumns: ['title', 'category', 'featured'],
+    useAsTitle: 'name',
+    defaultColumns: ['name', 'category', 'featured'],
   },
 
   fields: [
     {
-      name: 'title',
+      name: 'name',
       type: 'text',
       required: true,
-    },
-    {
-      name: 'slug',
-      type: 'text',
-      required: true,
-      unique: true,
     },
     {
       name: 'category',
@@ -38,17 +32,18 @@ export const Products: CollectionConfig = {
     {
       name: 'shortDescription',
       type: 'textarea',
-    },
-    {
-      name: 'description',
-      type: 'textarea',
       required: true,
     },
     {
-      name: 'featuredImage',
+      name: 'longDescription',
+      type: 'textarea',
+    },
+    {
+      name: 'coverImage',
       type: 'upload',
       relationTo: 'media',
       required: true,
+      hasMany: false,
     },
     {
       name: 'gallery',
@@ -57,27 +52,58 @@ export const Products: CollectionConfig = {
       hasMany: true,
     },
     {
-      name: 'specifications',
-      type: 'array',
+      name: "specifications",
+      type: "group",
       fields: [
         {
-          name: 'label',
-          type: 'text',
+          name: "code",
+          label: "Product code",
+          type: "text",
         },
         {
-          name: 'value',
-          type: 'text',
+          name: "fabric",
+          type: "text",
+        },
+        {
+          name: "height",
+          type: "number",
+          required: true,
+        },
+        {
+          name: "width",
+          type: "number",
+          required: true,
+        },
+        {
+          name: "unit",
+          type: "select",
+          required: true,
+          defaultValue: "cm",
+          options: [
+            {
+              label: "Centimeter (cm)",
+              value: "cm",
+            },
+            {
+              label: "Meter (m)",
+              value: "m",
+            },
+            {
+              label: "Inch (in)",
+              value: "inch",
+            },
+          ],
         },
       ],
     },
     {
-      name: 'featured',
-      type: 'checkbox',
+      name: "featured",
+      type: "checkbox",
       defaultValue: false,
     },
     {
-      name: 'active',
-      type: 'checkbox',
+      name: "active",
+      type: "checkbox",
       defaultValue: true,
     },
   ],
