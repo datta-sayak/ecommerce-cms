@@ -61,7 +61,7 @@ export default function Testimonials() {
 
                 {/* Author Info */}
                 <div className="absolute bottom-1 left-[1px] flex items-center gap-3">
-                  <div className="h-12 w-12 shrink-0 rounded-lg border-2 border-black/6 bg-black/4" />
+                  <div className="h-12 w-12 shrink-0 rounded-lg border-2 border-black/6 bg-black/4"></div>
                   <div>
                     <div className="text-base font-bold text-primary-dark">
                       {testimonial.name}

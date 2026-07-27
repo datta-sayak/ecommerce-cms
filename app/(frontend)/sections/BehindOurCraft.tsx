@@ -24,6 +24,7 @@ export default function BehindOurCraft() {
         src="/background-detail.png"
         alt="Background pattern"
         fill
+        sizes="100vw"
         className="absolute inset-0 object-cover opacity-2"
         loading="eager"
       />
