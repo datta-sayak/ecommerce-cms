@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { Star } from 'lucide-react';
+import commentImage from '../../../public/comment.png';
 
 const testimonials = [
   {
@@ -46,29 +47,23 @@ export default function Testimonials() {
           {testimonials.map((testimonial) => (
             <div key={testimonial.id} className="flex flex-col">
               {/* Testimonial Card */}
-              <div className="bg-gray-50 rounded-tl-3xl rounded-tr-3xl rounded-bl-3xl p-8">
-                {/* Quote Icon */}
+              <div className="relative">
                 <Image
-                  src="/quote.svg"
-                  alt="Quote"
-                  width={80}
-                  height={80}
-                  className="mb-8 opacity-20"
+                  src={commentImage}
+                  alt="Comment layer"
+                  className="h-auto w-full"
                 />
 
                 {/* Testimonial Text */}
-                <p className="text-lg text-gray-600 leading-relaxed">
+                <p className="absolute inset-x-8 top-[44%] text-sm leading-relaxed text-gray-600 md:text-base">
                   {testimonial.text}
                 </p>
-              </div>
 
-              {/* Author Info Row - Attached to card */}
-              <div className="flex items-center justify-between -mt-4 px-4 pt-4">
-                {/* Left: Avatar + Name */}
-                <div className="flex items-center gap-3">
-                  <div className="w-16 h-16 bg-gray-100 rounded-2xl flex-shrink-0"></div>
+                {/* Author Info */}
+                <div className="absolute bottom-1 left-[1px] flex items-center gap-3">
+                  <div className="h-12 w-12 shrink-0 rounded-lg border-2 border-black/6 bg-black/4" />
                   <div>
-                    <div className="font-bold text-primary-dark text-base">
+                    <div className="text-base font-bold text-primary-dark">
                       {testimonial.name}
                     </div>
                     <div className="text-sm text-text-muted">
@@ -77,12 +72,12 @@ export default function Testimonials() {
                   </div>
                 </div>
 
-                {/* Right: Star Rating in box */}
-                <div className="bg-gray-50 rounded-bl-2xl rounded-br-2xl px-5 py-7 flex gap-1 -mr-4">
+                {/* Star Rating */}
+                <div className="absolute bottom-6 right-8 flex gap-1">
                   {[...Array(testimonial.rating)].map((_, index) => (
                     <Star
                       key={index}
-                      className="w-6 h-6 fill-primary-green text-primary-green"
+                      className="w-5 h-5 fill-primary-green text-primary-green"
                     />
                   ))}
                 </div>
