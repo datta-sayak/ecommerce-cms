@@ -1,43 +1,34 @@
-'use client';
-
 import Link from 'next/link';
 import Image from 'next/image';
 import { ChevronRight } from 'lucide-react';
+import { getPayload } from 'payload';
+import config from '@/payload.config';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/ui/carousel';
 
-const categories = [
-  {
-    id: 1,
-    name: 'Jute Bags',
-    description: 'The Golden Fiber – 100% biodegradable, strong, and naturally beautiful bags for everyday use.',
-    image: '/jute-bag.png',
-    featured: false,
-  },
-  {
-    id: 2,
-    name: 'Cotton Bags',
-    description: 'Soft, washable, and eco-friendly cotton bags that give brands a clean natural canvas for custom printing.',
-    image: '/cotton-bag.png',
-    featured: false,
-  },
-  {
-    id: 3,
-    name: 'Bottle Bags',
-    description: 'Heavy-duty rugged fabric bags built to last through daily challenges while carrying heavy loads with ease.',
-    image: '/bottle-bag.png',
-    featured: false,
-  },
-  {
-    id: 4,
-    name: 'Fruit & Veg Bags',
-    description: 'A perfect jute and cotton blend giving smooth printing surface with soft touch and natural sustainability.',
-    image: '/fruit-veg-bag.png',
-    featured: true,
-  },
-];
+async function getCategories() {
+  const payload = await getPayload({ config });
 
-export default function ProductCategories() {
+  const categories = await payload.find({
+    collection: 'category',
+    depth: 1,
+    limit: 50,
+  });
+
+  return categories.docs;
+}
+
+export default async function ProductCategories() {
+
+  const categories = await getCategories();
+  
   return (
-    <section className="relative py-16 md:py-24 px-4 md:px-8 lg:px-12 bg-white">
+    <section className="relative py-12 md:py-20 px-4 md:px-8 lg:px-12 bg-white">
       {/* Background Image */}
       <Image
         src="/background-detail.png"
@@ -58,36 +49,69 @@ export default function ProductCategories() {
           </p>
         </div>
 
-        {/* Product Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 lg:gap-8">
-          {categories.map((category) => (
-            <div
-              key={category.id}
-              className="bg-white border-2 border-bg-light rounded-lg overflow-hidden transition-all hover:shadow-lg">
-              {/* Image Container */}
-              <div className="relative h-56 md:h-64 bg-gray-100 flex items-center justify-center overflow-hidden">
-                {/* product image */}
-              </div>
+        {/* Product Carousel */}
+        <Carousel
+          opts={{
+            align: 'start',
+            loop: categories.length > 5,
+          }}
+          className="mx-auto w-full px-8 sm:px-10 lg:px-0"
+        >
+          <CarouselContent className="-ml-3 md:-ml-5">
+            {categories.map((category) => {
+              const coverImage = typeof category.coverImage === 'object' ? category.coverImage : null;
+              const imageUrl = coverImage?.url || '/jute-bag.png';
 
-              {/* Content */}
-              <div className="p-6">
-                <h3 className="text-sm md:text-xl font-bold text-primary-dark mb-3">
-                  {category.name}
-                </h3>
-                <p className="hidden md:block text-sm text-text-muted mb-4 leading-relaxed">
-                  {category.description}
-                </p>
-                <Link
-                  href={`/products/${category.id}`}
-                  className="inline-flex items-center text-xs md:text-base text-primary-green font-semibold hover:text-primary-dark transition"
+              return (
+                <CarouselItem
+                  key={category.id}
+                  className="basis-[49%] pl-3 sm:basis-[42%] md:basis-1/3 md:pl-5 lg:basis-1/5"
                 >
-                  Explore 
-                  <ChevronRight className="w-5 h-5" />
-                </Link>
-              </div>
-            </div>
-          ))}
-        </div>
+                  <div className="group flex h-full flex-col items-center">
+                    {/* Card Container */}
+                    <div className="relative flex h-full w-full flex-col overflow-hidden rounded-2xl border-2 border-gray-200 bg-white transition-all duration-300 hover:shadow-lg">
+                      {/* Image Container */}
+                      <div className="relative flex h-44 items-center justify-center overflow-hidden sm:h-52 md:h-68">
+                        <Image
+                          src={imageUrl}
+                          alt={category.name}
+                          width={220}
+                          height={220}
+                          className="h-full w-full object-cover"
+                        />
+                      </div>
+
+                      {/* Green Circle Icon - Positioned Overlapping */}
+                      <div className="relative z-10 flex justify-center -mt-5 md:-mt-6">
+                        <div className="flex h-12 w-12 items-center justify-center rounded-full border-[3.5px] border-white bg-primary-green md:h-16 md:w-16">
+                        </div>
+                      </div>
+
+                      {/* Content */}
+                      <div className="flex flex-1 flex-col items-center px-3 text-center md:px-4">
+                        <h3 className="my-3 text-sm font-semibold uppercase text-primary-dark sm:text-base md:text-lg">
+                          {category.name}
+                        </h3>
+
+                        {/* Explore Link */}
+                        <Link
+                          href={`/products?category=${category.id}`}
+                          className="inline-flex items-center ml-3 text-xs mt-2 mb-6 font-semibold text-primary-green transition hover:text-primary-dark group/link md:text-sm"
+                        >
+                          Explore Products
+                          <ChevronRight className="ml-1 h-4 w-4 transition-transform group-hover/link:translate-x-1" />
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </CarouselItem>
+              );
+            })}
+          </CarouselContent>
+
+          <CarouselPrevious className="left-0 z-20 h-9 w-9 border-primary-green/30 bg-white/95 text-primary-green shadow-md hover:bg-white hover:text-primary-dark md:left-1 lg:-left-12" />
+          <CarouselNext className="right-0 z-20 h-9 w-9 border-primary-green/30 bg-white/95 text-primary-green shadow-md hover:bg-white hover:text-primary-dark md:right-1 lg:-right-12" />
+        </Carousel>
       </div>
     </section>
   );

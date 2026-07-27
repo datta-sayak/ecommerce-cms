@@ -6,44 +6,44 @@ import { ChevronRight } from 'lucide-react';
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen overflow-hidden">
+    <section className="relative overflow-hidden">
       {/* Hero Background with Image */}
-      <div className="relative min-h-screen flex flex-col justify-start pt-0 -translate-y-18 px-4 md:px-8 lg:px-12 bg-[#f9f9f9] overflow-hidden">
+      <div className="relative -mt-18 min-h-screen flex flex-col justify-start pt-0 px-4 md:px-8 lg:px-12 bg-[#f9f9f9] overflow-hidden [--stats-bar-height:9.5rem] md:[--stats-bar-height:7rem]">
         {/* Background Image */}
         <Image
           src="/background-detail.png"
           alt="Background pattern"
           fill
-          className="absolute inset-0 object-cover opacity-3"
+          className="pointer-events-none absolute inset-0 object-cover opacity-3"
           loading="eager"
         />
 
         {/* Content */}
-        <div className="relative mt-25 z-10 max-w-7xl mx-auto w-full">
+        <div className="relative mt-28 md:mt-40 z-10 max-w-7xl mx-auto w-full">
           {/* Main Content Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 items-center">
             {/* Left Side - Text Content */}
-            <div>
-              <div className="inline-flex items-center bg-[#05DF7226] px-4 py-2 rounded-full border-2 border-primary-green text-sm font-semibold text-primary-green flex items-center gap-2">
+            <div className="text-center lg:text-left">
+              <div className="inline-flex items-center bg-[#05DF7226] px-4 py-2 rounded-full border-2 border-primary-green text-sm font-semibold text-primary-green flex items-center gap-2 mx-auto lg:mx-0">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
                 </svg>
                 Certified Sustainable Manufacturer
               </div>
-              <h1 className="text-4xl md:text-7xl mt-8 font-bold whitespace-nowrap">
+              <h1 className="text-3xl sm:text-4xl md:text-7xl mt-8 font-semibold whitespace-normal md:whitespace-nowrap">
                 <span className="text-primary-dark">Sustainable Bags for a</span>
                 <br />
                 <span className="text-primary-green">Greener Future</span>
               </h1>
 
-              <p className="text-lg my-8 text-text-muted">
+              <p className="text-base sm:text-lg my-6 md:my-8 text-text-muted max-w-xl mx-auto lg:mx-0 text-justify">
                 100% natural and biodegradable jute, cotton, and canvas bags from
                 an Indian manufacturer offering custom sizing, low minimum order
                 quantities, and reliable export logistics worldwide.
               </p>
 
               {/* CTA Buttons */}
-              <div className="flex gap-2 md:gap-4 flex-nowrap pb-4 md:pb-0">
+              <div className="flex justify-center lg:justify-start gap-2 md:gap-4 flex-nowrap pb-4 md:pb-0">
                 <Link
                   href="/products"
                   className="flex items-center px-4 md:px-8 py-1 md:py-2 rounded-lg font-semibold text-white bg-primary-green transition-opacity hover:opacity-90 text-sm md:text-base whitespace-nowrap"
@@ -62,34 +62,26 @@ export default function HeroSection() {
             </div>
 
             {/* Right Side - Image */}
-            <div className="flex flex-col items-end justify-center gap-6 relative">
-              {/* Background Image - hero-bag */}
-              <Image
-                src="/hero-bag.png"
-                alt="Hero Bag Background"
-                width={280}
-                height={350}
-                className="scale-110 absolute rounded-lg shadow-lg object-cover w-full max-w-sm -z-10"
-                priority
-              />
-              
-              {/* Top Image - bg-removed */}
-              <Image
-                src="/bg-removed.png"
-                alt="Sustainable Jute Bags Product"
-                width={500}
-                height={500}
-                className="scale-115 absolute object-cover w-full max-w-lg h-full lg:-mr-18 relative z-10"
-                priority
-              />
-            </div>
+            <div className="min-h-[15rem] sm:min-h-[18rem] lg:min-h-[26rem]" />
           </div>
         </div>
 
+        {/* Background Image - hero-bag */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-[var(--stats-bar-height)] z-10 mx-auto w-full max-w-7xl px-4 md:px-8 lg:px-12">
+          <Image
+            src="/hero-bag.png"
+            alt="Hero Bag Background"
+            width={280}
+            height={350}
+            className="mx-auto block w-full max-w-[12rem] scale-105 object-cover sm:max-w-xs md:max-w-sm md:scale-120 lg:ml-auto lg:translate-x-120"
+            priority
+          />
+        </div>
+
         {/* Stats Section */}
-        <div className="absolute bottom-0 border-2 border-bg-light z-20 bg-white w-screen -mx-4 md:-mx-8 lg:-mx-12 px-4 md:px-8 lg:px-12 py-4 md:py-6">
+        <div className="absolute bottom-0 border-2 border-bg-light z-20 flex h-[var(--stats-bar-height)] w-screen items-center bg-white -mx-4 md:-mx-8 lg:-mx-12 px-4 md:px-8 lg:px-12 py-4 md:py-6">
           <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-30">
             <div className="flex items-center gap-2 md:gap-4">
               <div className="text-primary-green flex-shrink-0">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6 md:size-10">
