@@ -10,6 +10,7 @@ import { Users } from "./collections/Users";
 import { Media } from "./collections/Media";
 import { Categories } from "./collections/Categories";
 import { Products } from "./collections/Products";
+import { QuoteRequests } from "./collections/QuoteRequests";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -25,6 +26,9 @@ export default buildConfig({
         Logo: "@/components/admin/Logo",
         Icon: '@/components/admin/Icon',
       },
+      afterNavLinks: [
+        '@/components/admin/QuoteCountWidget#QuoteCountWidget',
+      ],
     },
     meta: {
       titleSuffix: "| Soujata Exim Admin",
@@ -37,7 +41,8 @@ export default buildConfig({
     Users,
     Media,
     Categories,
-    Products
+    Products,
+    QuoteRequests,
   ],
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
@@ -46,12 +51,12 @@ export default buildConfig({
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URL || "",
-      max: 2,
-      min: 0,
+      max: 20,
+      min: 2,
       idleTimeoutMillis: 10000,
       connectionTimeoutMillis: 5000,
     },
-    push: false,
+    // push: false,
   }),
   sharp,
   plugins: [

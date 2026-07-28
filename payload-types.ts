@@ -71,6 +71,7 @@ export interface Config {
     media: Media;
     category: Category;
     products: Product;
+    'quote-requests': QuoteRequest;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -82,6 +83,7 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     category: CategorySelect<false> | CategorySelect<true>;
     products: ProductsSelect<false> | ProductsSelect<true>;
+    'quote-requests': QuoteRequestsSelect<false> | QuoteRequestsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -200,6 +202,26 @@ export interface Product {
   createdAt: string;
 }
 /**
+ * Quote requests submitted via the website.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "quote-requests".
+ */
+export interface QuoteRequest {
+  id: number;
+  fullName: string;
+  email: string;
+  phone?: string | null;
+  company?: string | null;
+  country?: string | null;
+  productType: 'jute' | 'cotton' | 'canvas' | 'non-woven' | 'pouches' | 'custom';
+  quantity: string;
+  message?: string | null;
+  status?: ('new' | 'in-review' | 'quoted' | 'closed') | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
@@ -238,6 +260,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'products';
         value: number | Product;
+      } | null)
+    | ({
+        relationTo: 'quote-requests';
+        value: number | QuoteRequest;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -352,6 +378,23 @@ export interface ProductsSelect<T extends boolean = true> {
       };
   featured?: T;
   active?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "quote-requests_select".
+ */
+export interface QuoteRequestsSelect<T extends boolean = true> {
+  fullName?: T;
+  email?: T;
+  phone?: T;
+  company?: T;
+  country?: T;
+  productType?: T;
+  quantity?: T;
+  message?: T;
+  status?: T;
   updatedAt?: T;
   createdAt?: T;
 }
