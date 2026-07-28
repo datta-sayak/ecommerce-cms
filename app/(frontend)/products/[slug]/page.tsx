@@ -45,17 +45,17 @@ function getGallery(product: Product) {
 
 async function getProduct(slug: string) {
   const payload = await getPayload({ config });
-
+  
   try {
     const productCode = getProductCodeFromSlug(slug);
+
     const result = await payload.find({
       collection: 'products',
       where: {
-        'specifications.code': {
-          equals: productCode,
-        },
+        'specifications.code': { equals: productCode },
       },
       depth: 2,
+      limit: 1,
       overrideAccess: true,
     });
 
@@ -78,25 +78,13 @@ async function getRelatedProducts(product: Product) {
   }
 
   const payload = await getPayload({ config });
-  const products = await payload.find({
+  const result = await payload.find({
     collection: 'products',
     where: {
       and: [
-        {
-          active: {
-            equals: true,
-          },
-        },
-        {
-          category: {
-            equals: category.id,
-          },
-        },
-        {
-          id: {
-            not_equals: product.id,
-          },
-        },
+        { active: { equals: true } },
+        { category: { equals: category.id } },
+        { id: { not_equals: product.id } },
       ],
     },
     depth: 2,
@@ -104,7 +92,7 @@ async function getRelatedProducts(product: Product) {
     overrideAccess: true,
   });
 
-  return products.docs;
+  return result.docs;
 }
 
 export async function generateMetadata({ params }: ProductPageProps) {

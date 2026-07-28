@@ -5,12 +5,7 @@ export const Media: CollectionConfig = {
   slug: 'media',
   versions: false,
   access: {
-    read: ({ req: { user } }) => {
-      if (user) {
-        return true
-      }
-      return false
-    },
+    read: () => true,
   },
   admin: {
     defaultColumns: [

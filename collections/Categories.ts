@@ -4,12 +4,7 @@ export const Categories: CollectionConfig = {
   slug: 'category',
   versions: false,
   access: {
-    read: ({ req: { user } }) => {
-      if (user) {
-        return true
-      }
-      return false
-    },
+    read: () => true,
   },
   admin: {
     useAsTitle: 'name',

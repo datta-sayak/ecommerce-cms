@@ -4,12 +4,7 @@ export const Products: CollectionConfig = {
   slug: 'products',
   versions: false,
   access: {
-    read: ({ req: { user } }) => {
-      if (user) {
-        return true
-      }
-      return false
-    },
+    read: () => true,
   },
   admin: {
     useAsTitle: 'name',
