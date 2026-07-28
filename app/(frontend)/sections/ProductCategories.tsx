@@ -90,6 +90,8 @@ async function CategoriesCarousel() {
   );
 }
 
+import { FadeIn } from '@/components/ui/FadeIn';
+
 export default function ProductCategories() {
   return (
     <section className="relative py-12 md:py-20 px-4 md:px-8 lg:px-12 bg-white">
@@ -104,18 +106,22 @@ export default function ProductCategories() {
 
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-8 md:mb-12 lg:mb-16">
-          <h2 className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold mb-2 md:mb-4">
-            Our <span className="text-primary-green">Eco-Friendly</span> Bag Categories
-          </h2>
-          <p className="text-sm sm:text-base md:text-lg text-text-muted max-w-2xl mx-auto">
-            We manufacture a wide range of sustainable bags tailored for retail, fashion, food, and industrial use.
-          </p>
-        </div>
+        <FadeIn delay={0.1}>
+          <div className="text-center mb-8 md:mb-12 lg:mb-16">
+            <h2 className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold mb-2 md:mb-4">
+              Our <span className="text-primary-green">Eco-Friendly</span> Bag Categories
+            </h2>
+            <p className="text-sm sm:text-base md:text-lg text-text-muted max-w-2xl mx-auto">
+              We manufacture a wide range of sustainable bags tailored for retail, fashion, food, and industrial use.
+            </p>
+          </div>
+        </FadeIn>
 
-        <Suspense fallback={<CategoriesCarouselSkeleton />}>
-          <CategoriesCarousel />
-        </Suspense>
+        <FadeIn delay={0.3} direction="up">
+          <Suspense fallback={<CategoriesCarouselSkeleton />}>
+            <CategoriesCarousel />
+          </Suspense>
+        </FadeIn>
       </div>
     </section>
   );

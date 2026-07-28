@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { Marquee, MarqueeContent, MarqueeItem } from '@/components/kibo-ui/marquee';
+import { FadeIn } from '@/components/ui/FadeIn';
 import { useEffect, useState } from 'react';
 
 export default function BehindOurCraft() {
@@ -13,9 +14,6 @@ export default function BehindOurCraft() {
     }
     setCraftImages(images);
   }, []);
-  useEffect(() => {
-    console.log(craftImages);
-  }, [craftImages]);
 
   return (
     <section className="relative bg-white py-8 md:py-14">
@@ -32,14 +30,16 @@ export default function BehindOurCraft() {
       <div className="relative z-10">
         <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12">
           {/* Header */}
-          <div className="text-center mb-12 md:mb-16">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary-dark mb-4">
-              Behind Our <span className="text-primary-green">Sustainable</span> Craft
-            </h2>
-            <p className="text-lg text-text-muted max-w-2xl mx-auto">
-              Step inside our West Bengal facility where skilled artisans craft premium bags and see global clients receiving orders worldwide.
-            </p>
-          </div>
+          <FadeIn delay={0.1}>
+            <div className="text-center mb-12 md:mb-16">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary-dark mb-4">
+                Behind Our <span className="text-primary-green">Sustainable</span> Craft
+              </h2>
+              <p className="text-lg text-text-muted max-w-2xl mx-auto">
+                Step inside our West Bengal facility where skilled artisans craft premium bags and see global clients receiving orders worldwide.
+              </p>
+            </div>
+          </FadeIn>
         </div>
 
         <Marquee className="overflow-hidden">

@@ -100,6 +100,8 @@ async function FeaturedProductsGrid() {
   );
 }
 
+import { FadeIn } from '@/components/ui/FadeIn';
+
 export default function PopularBags() {
   return (
     <section className="relative py-16 md:py-24 px-4 md:px-8 lg:px-12 bg-white">
@@ -114,30 +116,36 @@ export default function PopularBags() {
 
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-8 md:mb-12 lg:mb-16">
-          <h2 className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold mb-2 md:mb-4">
-            Most Popular <span className="text-primary-green">Eco-Friendly</span> Bags
-          </h2>
-          <p className="text-sm sm:text-base md:text-lg text-text-muted max-w-2xl mx-auto">
-            From grocery totes to wine bags, these customer favorites combine natural elegance with eco-friendly functionality.
-          </p>
-        </div>
+        <FadeIn delay={0.1}>
+          <div className="text-center mb-8 md:mb-12 lg:mb-16">
+            <h2 className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold mb-2 md:mb-4">
+              Most Popular <span className="text-primary-green">Eco-Friendly</span> Bags
+            </h2>
+            <p className="text-sm sm:text-base md:text-lg text-text-muted max-w-2xl mx-auto">
+              From grocery totes to wine bags, these customer favorites combine natural elegance with eco-friendly functionality.
+            </p>
+          </div>
+        </FadeIn>
 
         {/* Product Grid with Suspense */}
-        <Suspense fallback={<PopularBagsGridSkeleton />}>
-          <FeaturedProductsGrid />
-        </Suspense>
+        <FadeIn delay={0.2} direction="up">
+          <Suspense fallback={<PopularBagsGridSkeleton />}>
+            <FeaturedProductsGrid />
+          </Suspense>
+        </FadeIn>
 
         {/* View All Products Button */}
-        <div className="flex justify-center mt-4">
-          <Link
-            href="/products"
-            className="inline-flex items-center bg-primary-green text-white px-8 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition"
-          >
-            View All Products
-            <ChevronRight className="w-5 h-5" />
-          </Link>
-        </div>
+        <FadeIn delay={0.3} direction="up">
+          <div className="flex justify-center mt-4">
+            <Link
+              href="/products"
+              className="inline-flex items-center bg-primary-green text-white px-8 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition"
+            >
+              View All Products
+              <ChevronRight className="w-5 h-5" />
+            </Link>
+          </div>
+        </FadeIn>
       </div>
     </section>
   );
