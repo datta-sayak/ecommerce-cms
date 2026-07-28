@@ -2,35 +2,54 @@ import type { CollectionConfig } from 'payload'
 
 export const Products: CollectionConfig = {
   slug: 'products',
+  versions: false,
   access: {
     read: ({ req: { user } }) => {
       if (user) {
         return true
       }
-      return {
-        active: {
-          equals: true,
-        },
-      }
+      return false
     },
   },
-
   admin: {
     useAsTitle: 'name',
-    defaultColumns: ['name', 'specifications.code', 'category', 'active', 'featured'],
+    defaultColumns: [
+      'name',
+      'specifications.code',
+      'category',
+      'active',
+      'featured'
+    ],
+    pagination: {
+      defaultLimit: 20,
+      limits: [10, 20, 50, 100],
+    },
+    listSearchableFields: ['name', 'specifications.code'],
   },
-
+  indexes: [
+    {
+      fields: ['active', 'category'],
+    },
+    {
+      fields: ['featured', 'active'],
+    },
+    {
+      fields: ['createdAt'],
+    },
+  ],
   fields: [
     {
       name: 'name',
       type: 'text',
       required: true,
+      index: true,
     },
     {
       name: 'category',
       type: 'relationship',
       relationTo: 'category',
       required: true,
+      index: true,
     },
     {
       name: 'shortDescription',
@@ -62,6 +81,7 @@ export const Products: CollectionConfig = {
           name: "code",
           label: "Product code",
           type: "text",
+          index: true,
         },
         {
           name: "fabric",
@@ -103,11 +123,13 @@ export const Products: CollectionConfig = {
       name: "featured",
       type: "checkbox",
       defaultValue: false,
+      index: true,
     },
     {
       name: "active",
       type: "checkbox",
       defaultValue: true,
+      index: true,
     },
   ],
 }

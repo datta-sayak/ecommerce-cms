@@ -3,8 +3,14 @@ import type { CollectionConfig } from 'payload'
 
 export const Media: CollectionConfig = {
   slug: 'media',
+  versions: false,
   access: {
-    read: () => true,
+    read: ({ req: { user } }) => {
+      if (user) {
+        return true
+      }
+      return false
+    },
   },
   admin: {
     defaultColumns: [
@@ -15,7 +21,22 @@ export const Media: CollectionConfig = {
       'height',
       'width'
     ],
+    pagination: {
+      defaultLimit: 20,
+      limits: [10, 20, 50, 100],
+    },
   },
+  indexes: [
+    {
+      fields: ['filename'],
+    },
+    {
+      fields: ['mimeType'],
+    },
+    {
+      fields: ['createdAt'],
+    },
+  ],
   fields: [
     {
       name: 'alt',
@@ -40,9 +61,11 @@ export const Media: CollectionConfig = {
       if (!doc.filename) return null
       return cloudinaryConfig.url(doc.filename as string, {
         secure: true,
-        width: 300,
-        height: 300,
-        crop: 'fill',
+        width: 150,
+        height: 150,
+        crop: 'thumb',
+        quality: 'auto:low',
+        fetch_format: 'auto',
       })
     }
   },

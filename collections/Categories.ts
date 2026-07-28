@@ -2,17 +2,29 @@ import type { CollectionConfig } from 'payload'
 
 export const Categories: CollectionConfig = {
   slug: 'category',
-
+  versions: false,
+  access: {
+    read: ({ req: { user } }) => {
+      if (user) {
+        return true
+      }
+      return false
+    },
+  },
   admin: {
     useAsTitle: 'name',
     defaultColumns: ['name', 'parent'],
+    pagination: {
+      defaultLimit: 20,
+      limits: [10, 20, 50, 100],
+    },
   },
-
   fields: [
     {
       name: 'name',
       type: 'text',
       required: true,
+      index: true,
     },
     {
       name: 'description',
