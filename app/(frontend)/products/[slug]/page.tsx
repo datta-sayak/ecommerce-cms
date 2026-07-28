@@ -9,6 +9,7 @@ import config from '@/payload.config';
 import type { Category, Media, Product } from '@/payload-types';
 import { getProductCodeFromSlug, getProductSlug, getCategorySlug } from '@/utils/productRoutes';
 import ProductTabs from '../_components/ProductTabs';
+import ProductGallery from '../_components/ProductGallery';
 
 type ProductPageProps = {
   params: Promise<{
@@ -145,36 +146,8 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
 
           <div className="flex flex-col lg:flex-row lg:items-start gap-12">
             {/* Left side: Sticky Image */}
-            <div className="lg:w-1/2 lg:sticky lg:top-24 space-y-4">
-              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg bg-gray-50 border border-gray-100">
-                <Image
-                  src={heroImage?.url || getMediaURL(product.coverImage)}
-                  alt={heroImage?.alt || product.name}
-                  fill
-                  sizes="(min-width: 1024px) 50vw, 92vw"
-                  className="object-cover"
-                  priority
-                />
-              </div>
-
-              {gallery.length > 1 && (
-                <div className="grid grid-cols-4 gap-3">
-                  {gallery.slice(1, 5).map((image) => (
-                    <div
-                      key={image.id}
-                      className="relative aspect-square overflow-hidden rounded-lg bg-gray-50 border border-gray-100"
-                    >
-                      <Image
-                        src={image.url || '/assets/bag.png'}
-                        alt={image.alt || product.name}
-                        fill
-                        sizes="(min-width: 1024px) 12vw, 24vw"
-                        className="object-cover"
-                      />
-                    </div>
-                  ))}
-                </div>
-              )}
+            <div className="lg:w-1/2 lg:sticky lg:top-24">
+              <ProductGallery images={gallery} productName={product.name} />
             </div>
 
             {/* Right side: Product Info */}
