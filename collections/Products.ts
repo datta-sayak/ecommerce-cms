@@ -3,18 +3,21 @@ import type { CollectionConfig } from 'payload'
 export const Products: CollectionConfig = {
   slug: 'products',
   access: {
-  read: () => {
-        return {
-          active: {
-            equals: true,
-          },
-        }
+    read: ({ req: { user } }) => {
+      if (user) {
+        return true
+      }
+      return {
+        active: {
+          equals: true,
+        },
+      }
     },
   },
 
   admin: {
     useAsTitle: 'name',
-    defaultColumns: ['name', 'category', 'featured'],
+    defaultColumns: ['name', 'specifications.code', 'category', 'active', 'featured'],
   },
 
   fields: [
