@@ -1,3 +1,4 @@
+import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import { postgresAdapter } from "@payloadcms/db-postgres";
 import { cloudStoragePlugin } from "@payloadcms/plugin-cloud-storage";
 import { cloudinaryAdapter, cloudinaryConfig } from "@/utils/cloudinaryAdapter";
@@ -45,6 +46,7 @@ export default buildConfig({
     QuoteRequests,
   ],
   secret: process.env.PAYLOAD_SECRET || "",
+  editor: lexicalEditor(),
   typescript: {
     outputFile: path.resolve(dirname, "payload-types.ts"),
   },

@@ -8,14 +8,6 @@ export const Media: CollectionConfig = {
     read: () => true,
   },
   admin: {
-    defaultColumns: [
-      'filename',
-      'createdAt',
-      'mimeType',
-      'url',
-      'height',
-      'width'
-    ],
     pagination: {
       defaultLimit: 20,
       limits: [10, 20, 50, 100],

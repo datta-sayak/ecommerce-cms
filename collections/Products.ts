@@ -53,7 +53,11 @@ export const Products: CollectionConfig = {
     },
     {
       name: 'longDescription',
-      type: 'textarea',
+      type: 'richText',
+    },
+    {
+      name: 'productHighlights',
+      type: 'richText',
     },
     {
       name: 'coverImage',
@@ -93,6 +97,10 @@ export const Products: CollectionConfig = {
           name: "width",
           type: "number",
           required: true,
+        },
+        {
+          name: "weight",
+          type: "number",
         },
         {
           name: "unit",

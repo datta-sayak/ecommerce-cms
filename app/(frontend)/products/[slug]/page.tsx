@@ -2,12 +2,13 @@ import Header from '../../sections/Header';
 import Footer from '../../sections/Footer';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowLeft, CheckCircle2, ChevronRight, Leaf, Package, Ruler } from 'lucide-react';
+import { ArrowLeft, ChevronRight } from 'lucide-react';
 import { notFound } from 'next/navigation';
 import { getPayload } from 'payload';
 import config from '@/payload.config';
 import type { Category, Media, Product } from '@/payload-types';
 import { getProductCodeFromSlug, getProductSlug, getCategorySlug } from '@/utils/productRoutes';
+import ProductTabs from '../_components/ProductTabs';
 
 type ProductPageProps = {
   params: Promise<{
@@ -132,43 +133,36 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
     <main className="min-h-screen bg-white">
       <Header />
 
-      <section className="relative overflow-hidden border-b border-bg-light bg-white">
-        <Image
-          src="/background-detail.png"
-          alt="background"
-          fill
-          className="pointer-events-none object-cover opacity-2"
-          priority
-        />
-
+      <section className="relative overflow-hidden bg-white">
         <div className="relative z-10 mx-auto max-w-7xl px-4 py-8 md:px-8 lg:px-12">
           <Link
             href="/products"
-            className="mb-8 inline-flex items-center gap-2 text-sm font-semibold text-primary-green transition hover:text-primary-dark"
+            className="mb-8 inline-flex items-center gap-2 text-sm font-semibold text-black transition hover:opacity-70"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to Products
           </Link>
 
-          <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
-            <div className="space-y-4">
-              <div className="relative aspect-[4/3] overflow-hidden rounded-lg border-3 border-bg-light bg-gray-100">
+          <div className="flex flex-col lg:flex-row lg:items-start gap-12">
+            {/* Left side: Sticky Image */}
+            <div className="lg:w-1/2 lg:sticky lg:top-24 space-y-4">
+              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg bg-gray-50 border border-gray-100">
                 <Image
                   src={heroImage?.url || getMediaURL(product.coverImage)}
                   alt={heroImage?.alt || product.name}
                   fill
-                  sizes="(min-width: 1024px) 52vw, 92vw"
+                  sizes="(min-width: 1024px) 50vw, 92vw"
                   className="object-cover"
                   priority
                 />
               </div>
 
               {gallery.length > 1 && (
-                <div className="grid grid-cols-3 gap-3 sm:grid-cols-4">
+                <div className="grid grid-cols-4 gap-3">
                   {gallery.slice(1, 5).map((image) => (
                     <div
                       key={image.id}
-                      className="relative aspect-square overflow-hidden rounded-lg border border-bg-light bg-gray-100"
+                      className="relative aspect-square overflow-hidden rounded-lg bg-gray-50 border border-gray-100"
                     >
                       <Image
                         src={image.url || '/assets/bag.png'}
@@ -183,154 +177,33 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
               )}
             </div>
 
-            <div>
-              <div className="mb-4 flex flex-wrap items-center gap-3">
-                {category && (
-                  <Link
-                    href={`/products?category=${getCategorySlug(category.name)}`}
-                    className="rounded-full bg-[#E9F0EC] px-4 py-2 text-sm font-semibold text-primary-green transition hover:bg-primary-green hover:text-white"
-                  >
-                    {category.name}
-                  </Link>
-                )}
-                {product.featured && (
-                  <span className="rounded-full bg-primary-dark px-4 py-2 text-sm font-semibold text-white">
-                    Featured
-                  </span>
-                )}
-              </div>
-
-              <h1 className="mb-4 text-3xl font-bold leading-tight text-primary-dark md:text-5xl">
+            {/* Right side: Product Info */}
+            <div className="lg:w-1/2">
+              <h1 className="mb-2 text-3xl font-bold leading-tight text-black md:text-5xl">
                 {product.name}
               </h1>
-              <p className="mb-8 text-base leading-7 text-text-muted md:text-lg">
+              <p className="text-base leading-relaxed text-gray-700 mb-6">
                 {product.shortDescription}
               </p>
-
-              <div className="mb-8 grid gap-4 sm:grid-cols-3">
-                {product.specifications.code && (
-                  <div className="rounded-lg border border-bg-light bg-white p-4">
-                    <Package className="mb-3 h-5 w-5 text-primary-green" />
-                    <p className="text-xs font-semibold uppercase text-gray-500">Code</p>
-                    <p className="mt-1 font-bold text-primary-dark">
-                      {product.specifications.code}
-                    </p>
-                  </div>
-                )}
-                <div className="rounded-lg border border-bg-light bg-white p-4">
-                  <Ruler className="mb-3 h-5 w-5 text-primary-green" />
-                  <p className="text-xs font-semibold uppercase text-gray-500">Size</p>
-                  <p className="mt-1 font-bold text-primary-dark">{dimensions}</p>
-                </div>
-                {product.specifications.fabric && (
-                  <div className="rounded-lg border border-bg-light bg-white p-4">
-                    <Leaf className="mb-3 h-5 w-5 text-primary-green" />
-                    <p className="text-xs font-semibold uppercase text-gray-500">Fabric</p>
-                    <p className="mt-1 font-bold text-primary-dark">
-                      {product.specifications.fabric}
-                    </p>
-                  </div>
-                )}
-              </div>
-
-              <div className="flex flex-col gap-3 sm:flex-row">
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center justify-center rounded-lg bg-primary-green px-6 py-3 font-semibold text-white transition hover:opacity-90"
-                >
-                  Enquire About This Product
-                  <ChevronRight className="ml-2 h-5 w-5" />
-                </Link>
-                <Link
-                  href="/products"
-                  className="inline-flex items-center justify-center rounded-lg border border-primary-dark px-6 py-3 font-semibold text-primary-dark transition hover:bg-primary-dark hover:text-white"
-                >
-                  Browse Catalogue
-                </Link>
-              </div>
+              
+              <ProductTabs 
+                description={product.longDescription || product.shortDescription} 
+                highlights={product.productHighlights}
+                specifications={{
+                  code: product.specifications.code,
+                  fabric: product.specifications.fabric,
+                  height: product.specifications.height,
+                  width: product.specifications.width,
+                  weight: product.specifications.weight,
+                  unit: product.specifications.unit,
+                  category: category?.name,
+                }} 
+              />
             </div>
           </div>
         </div>
       </section>
-
-      <section className="mx-auto max-w-7xl px-4 py-12 md:px-8 lg:px-12">
-        <div className="grid gap-8 lg:grid-cols-[1fr_360px]">
-          <div>
-            <h2 className="mb-4 text-2xl font-bold text-primary-dark">Product Details</h2>
-            <div className="space-y-5 text-base leading-7 text-text-muted">
-              <p>{product.longDescription || product.shortDescription}</p>
-              {category?.description && <p>{category.description}</p>}
-            </div>
-          </div>
-
-          <aside className="rounded-lg border border-bg-light bg-[#F8FAF9] p-6">
-            <h2 className="mb-5 text-xl font-bold text-primary-dark">Specifications</h2>
-            <dl className="space-y-4">
-              {product.specifications.code && (
-                <div className="flex items-start justify-between gap-4 border-b border-bg-light pb-3">
-                  <dt className="text-sm text-gray-500">Product Code</dt>
-                  <dd className="text-right text-sm font-semibold text-primary-dark">
-                    {product.specifications.code}
-                  </dd>
-                </div>
-              )}
-              {product.specifications.fabric && (
-                <div className="flex items-start justify-between gap-4 border-b border-bg-light pb-3">
-                  <dt className="text-sm text-gray-500">Fabric</dt>
-                  <dd className="text-right text-sm font-semibold text-primary-dark">
-                    {product.specifications.fabric}
-                  </dd>
-                </div>
-              )}
-              <div className="flex items-start justify-between gap-4 border-b border-bg-light pb-3">
-                <dt className="text-sm text-gray-500">Height</dt>
-                <dd className="text-right text-sm font-semibold text-primary-dark">
-                  {product.specifications.height} {product.specifications.unit}
-                </dd>
-              </div>
-              <div className="flex items-start justify-between gap-4 border-b border-bg-light pb-3">
-                <dt className="text-sm text-gray-500">Width</dt>
-                <dd className="text-right text-sm font-semibold text-primary-dark">
-                  {product.specifications.width} {product.specifications.unit}
-                </dd>
-              </div>
-              {category && (
-                <div className="flex items-start justify-between gap-4">
-                  <dt className="text-sm text-gray-500">Category</dt>
-                  <dd className="text-right text-sm font-semibold text-primary-dark">
-                    {category.name}
-                  </dd>
-                </div>
-              )}
-            </dl>
-          </aside>
-        </div>
-      </section>
-
-      <section className="bg-[#F8FAF9] py-12">
-        <div className="mx-auto max-w-7xl px-4 md:px-8 lg:px-12">
-          <div className="mb-8 flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
-            <div>
-              <h2 className="text-2xl font-bold text-primary-dark">Built For Responsible Brands</h2>
-              <p className="mt-2 max-w-2xl text-text-muted">
-                Practical bag construction with sustainable materials, export-ready finishing, and
-                flexible options for retail and promotional use.
-              </p>
-            </div>
-          </div>
-
-          <div className="grid gap-4 md:grid-cols-3">
-            {['Eco-friendly material choices', 'Custom branding available', 'Bulk export support'].map(
-              (item) => (
-                <div key={item} className="flex items-center gap-3 rounded-lg bg-white p-5">
-                  <CheckCircle2 className="h-5 w-5 shrink-0 text-primary-green" />
-                  <span className="font-semibold text-primary-dark">{item}</span>
-                </div>
-              ),
-            )}
-          </div>
-        </div>
-      </section>
+      
 
       {relatedProducts.length > 0 && (
         <section className="mx-auto max-w-7xl px-4 py-12 md:px-8 lg:px-12">
@@ -339,7 +212,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
             {category && (
               <Link
                 href={`/products?category=${getCategorySlug(category.name)}`}
-                className="text-sm font-semibold text-primary-green transition hover:text-primary-dark"
+                className="text-sm font-semibold text-black transition hover:opacity-70"
               >
                 View Category
               </Link>
@@ -366,7 +239,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
                   <p className="mb-2 text-sm text-gray-500">
                     {getCategory(relatedProduct.category)?.name || 'Product'}
                   </p>
-                  <h3 className="font-bold text-primary-dark">{relatedProduct.name}</h3>
+                  <h3 className="font-bold text-black">{relatedProduct.name}</h3>
                 </div>
               </Link>
             ))}

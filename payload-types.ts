@@ -186,7 +186,36 @@ export interface Product {
   name: string;
   category: number | Category;
   shortDescription: string;
-  longDescription?: string | null;
+  longDescription?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  productHighlights?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
   coverImage: number | Media;
   gallery?: (number | Media)[] | null;
   specifications: {
@@ -194,6 +223,7 @@ export interface Product {
     fabric?: string | null;
     height: number;
     width: number;
+    weight?: number | null;
     unit: 'cm' | 'm' | 'inch';
   };
   featured?: boolean | null;
@@ -365,6 +395,7 @@ export interface ProductsSelect<T extends boolean = true> {
   category?: T;
   shortDescription?: T;
   longDescription?: T;
+  productHighlights?: T;
   coverImage?: T;
   gallery?: T;
   specifications?:
@@ -374,6 +405,7 @@ export interface ProductsSelect<T extends boolean = true> {
         fabric?: T;
         height?: T;
         width?: T;
+        weight?: T;
         unit?: T;
       };
   featured?: T;
