@@ -1,22 +1,22 @@
+'use client';
+
 import Link from 'next/link';
 import { Menu } from 'lucide-react';
-import { getPayload } from 'payload';
-import config from '@/payload.config';
+import { useAppStore } from '@/store/useAppStore';
 import { getCategorySlug } from '@/utils/productRoutes';
+import { CategorySidebarSkeleton } from './Skeletons';
 
 type Props = {
   selectedCategorySlug?: string;
 };
 
-export default async function CategorySidebar({ selectedCategorySlug }: Props) {
-  const payload = await getPayload({ config });
-  
-  const categories = await payload.find({
-    collection: 'category',
-    depth: 1,
-    limit: 100,
-    overrideAccess: true,
-  });
+export default function CategorySidebar({ selectedCategorySlug }: Props) {
+  const categories = useAppStore((s) => s.categories);
+
+  // Store hasn't rehydrated from localStorage yet — show skeleton
+  if (categories.length === 0) {
+    return <CategorySidebarSkeleton />;
+  }
 
   return (
     <aside className="shrink-0 lg:w-64">
@@ -40,7 +40,7 @@ export default async function CategorySidebar({ selectedCategorySlug }: Props) {
             </Link>
           </li>
 
-          {categories.docs.map((category) => (
+          {categories.map((category) => (
             <li key={category.id}>
               <Link
                 href={`/products?category=${getCategorySlug(category.name)}`}

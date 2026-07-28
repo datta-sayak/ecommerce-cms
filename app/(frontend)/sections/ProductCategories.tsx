@@ -1,11 +1,12 @@
-import { Suspense } from 'react';
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
 import { ChevronRight } from 'lucide-react';
-import { getPayload } from 'payload';
-import config from '@/payload.config';
+import { useAppStore } from '@/store/useAppStore';
 import { getCategorySlug } from '@/utils/productRoutes';
 import { CategoriesCarouselSkeleton } from '@/components/HomeSkeletons';
+import { FadeIn } from '@/components/ui/FadeIn';
 import {
   Carousel,
   CarouselContent,
@@ -14,26 +15,23 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel';
 
-async function CategoriesCarousel() {
-  const payload = await getPayload({ config });
+function CategoriesCarousel() {
+  const categories = useAppStore((s) => s.categories);
 
-  const categories = await payload.find({
-    collection: 'category',
-    depth: 1,
-    limit: 50,
-    overrideAccess: true,
-  });
+  if (categories.length === 0) {
+    return <CategoriesCarouselSkeleton />;
+  }
 
   return (
     <Carousel
       opts={{
         align: 'start',
-        loop: categories.docs.length > 5,
+        loop: categories.length > 5,
       }}
       className="mx-auto w-full px-8 sm:px-10 lg:px-0"
     >
       <CarouselContent className="-ml-3 md:-ml-5">
-        {categories.docs.map((category) => {
+        {categories.map((category) => {
           const coverImage = typeof category.coverImage === 'object' ? category.coverImage : null;
           const imageUrl = coverImage?.url || '/jute-bag.png';
 
@@ -90,8 +88,6 @@ async function CategoriesCarousel() {
   );
 }
 
-import { FadeIn } from '@/components/ui/FadeIn';
-
 export default function ProductCategories() {
   return (
     <section className="relative py-12 md:py-20 px-4 md:px-8 lg:px-12 bg-white">
@@ -118,9 +114,7 @@ export default function ProductCategories() {
         </FadeIn>
 
         <FadeIn delay={0.3} direction="up">
-          <Suspense fallback={<CategoriesCarouselSkeleton />}>
-            <CategoriesCarousel />
-          </Suspense>
+          <CategoriesCarousel />
         </FadeIn>
       </div>
     </section>

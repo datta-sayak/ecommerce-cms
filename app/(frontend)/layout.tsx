@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import { Hanken_Grotesk, Geist } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import { getPayload } from "payload";
+import config from "@/payload.config";
+import StoreHydrator from "@/components/StoreHydrator";
+import type { Category, Product } from "@/payload-types";
 
 const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
@@ -109,17 +113,42 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+  const payload = await getPayload({ config });
+  
+  const [categoriesResult, productsResult] = await Promise.all([
+    payload.find({
+      collection: 'category',
+      depth: 1,
+      limit: 50,
+      overrideAccess: true,
+    }),
+    payload.find({
+      collection: 'products',
+      where: { active: { equals: true } },
+      depth: 2,
+      limit: 500,
+      overrideAccess: true,
+    }),
+  ]);
+
   return (
     <html
       lang="en"
       className={cn("h-full", "antialiased", hankenGrotesk.variable, "font-sans", geist.variable)}
     >
-      <body className="min-h-full flex flex-col font-sans">{children}</body>
+      <body className="min-h-full flex flex-col font-sans">
+        <StoreHydrator
+          categories={categoriesResult.docs as Category[]}
+          products={productsResult.docs as Product[]}
+        />
+        {children}
+      </body>
     </html>
   );
 }

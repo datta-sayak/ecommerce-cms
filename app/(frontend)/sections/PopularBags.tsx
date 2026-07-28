@@ -1,43 +1,38 @@
-import { Suspense } from 'react';
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
 import { ChevronRight } from 'lucide-react';
-import { getPayload } from 'payload';
-import config from '@/payload.config';
+import { useAppStore } from '@/store/useAppStore';
+import type { Category, Media } from '@/payload-types';
 import { getProductSlug } from '@/utils/productRoutes';
 import { PopularBagsGridSkeleton } from '@/components/HomeSkeletons';
+import { FadeIn } from '@/components/ui/FadeIn';
 
-async function FeaturedProductsGrid() {
-  const payload = await getPayload({ config });
+function getMediaURL(media: number | Media | null | undefined, fallback = '/assets/bag.png') {
+  return typeof media === 'object' && media?.url ? media.url : fallback;
+}
 
-  const products = await payload.find({
-    collection: 'products',
-    where: {
-      and: [
-        {
-          featured: {
-            equals: true,
-          },
-        },
-        {
-          active: {
-            equals: true,
-          },
-        },
-      ],
-    },
-    depth: 2,
-    overrideAccess: true,
-  });
+function getCategoryName(category: number | Category) {
+  return typeof category === 'object' ? category.name : 'Product';
+}
+
+function FeaturedProductsGrid() {
+  const allProducts = useAppStore((s) => s.products);
+
+  if (allProducts.length === 0) {
+    return <PopularBagsGridSkeleton />;
+  }
+
+  // Filter featured+active products client-side — same criteria as the old server query
+  const featured = allProducts.filter((p) => p.featured === true && p.active === true);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 lg:gap-8 mb-12">
-      {products.docs.map((product) => {
-        const category = typeof product.category === 'object' ? product.category : null;
-        const coverImage = typeof product.coverImage === 'object' ? product.coverImage : null;
-        const categoryName = category?.name || 'Product';
-        const imageUrl = coverImage?.url || '/assets/bag.png';
-        
+      {featured.map((product) => {
+        const categoryName = getCategoryName(product.category);
+        const imageUrl = getMediaURL(product.coverImage);
+
         return (
           <div
             key={product.id}
@@ -100,8 +95,6 @@ async function FeaturedProductsGrid() {
   );
 }
 
-import { FadeIn } from '@/components/ui/FadeIn';
-
 export default function PopularBags() {
   return (
     <section className="relative py-16 md:py-24 px-4 md:px-8 lg:px-12 bg-white">
@@ -127,11 +120,9 @@ export default function PopularBags() {
           </div>
         </FadeIn>
 
-        {/* Product Grid with Suspense */}
+        {/* Product Grid — reads from Zustand store */}
         <FadeIn delay={0.2} direction="up">
-          <Suspense fallback={<PopularBagsGridSkeleton />}>
-            <FeaturedProductsGrid />
-          </Suspense>
+          <FeaturedProductsGrid />
         </FadeIn>
 
         {/* View All Products Button */}

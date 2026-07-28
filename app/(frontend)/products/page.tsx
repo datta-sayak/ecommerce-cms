@@ -1,11 +1,8 @@
-import { Suspense } from 'react';
 import Image from 'next/image';
 import Header from '../sections/Header';
 import Footer from '../sections/Footer';
 import CategorySidebar from './_components/CategorySidebar';
 import ProductGrid from './_components/ProductGrid';
-import { CategorySidebarSkeleton, ProductGridSkeleton } from './_components/Skeletons';
-import InstantSuspense from './_components/InstantSuspense';
 
 type ProductsPageProps = {
   searchParams?: Promise<{
@@ -44,20 +41,11 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
 
         <div className="relative z-10 mx-auto max-w-7xl px-4 md:px-8 lg:px-12">
           <div className="flex flex-col gap-8 lg:flex-row">
+            {/* Reads categories from Zustand store */}
+            <CategorySidebar selectedCategorySlug={selectedCategorySlug} />
 
-            <Suspense fallback={<CategorySidebarSkeleton />}>
-              <CategorySidebar selectedCategorySlug={selectedCategorySlug} />
-            </Suspense>
-
-            <Suspense key={selectedCategorySlug || 'all'} fallback={<ProductGridSkeleton />}>
-              <InstantSuspense 
-                serverCategorySlug={selectedCategorySlug} 
-                fallback={<ProductGridSkeleton />}
-              >
-                <ProductGrid selectedCategorySlug={selectedCategorySlug} />
-              </InstantSuspense>
-            </Suspense>
-
+            {/* Reads & filters products from Zustand store */}
+            <ProductGrid selectedCategorySlug={selectedCategorySlug} />
           </div>
         </div>
       </section>
