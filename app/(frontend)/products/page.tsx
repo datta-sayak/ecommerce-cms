@@ -5,6 +5,7 @@ import Footer from '../sections/Footer';
 import CategorySidebar from './_components/CategorySidebar';
 import ProductGrid from './_components/ProductGrid';
 import { CategorySidebarSkeleton, ProductGridSkeleton } from './_components/Skeletons';
+import InstantSuspense from './_components/InstantSuspense';
 
 type ProductsPageProps = {
   searchParams?: Promise<{
@@ -48,8 +49,13 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
               <CategorySidebar selectedCategorySlug={selectedCategorySlug} />
             </Suspense>
 
-            <Suspense fallback={<ProductGridSkeleton />}>
-              <ProductGrid selectedCategorySlug={selectedCategorySlug} />
+            <Suspense key={selectedCategorySlug || 'all'} fallback={<ProductGridSkeleton />}>
+              <InstantSuspense 
+                serverCategorySlug={selectedCategorySlug} 
+                fallback={<ProductGridSkeleton />}
+              >
+                <ProductGrid selectedCategorySlug={selectedCategorySlug} />
+              </InstantSuspense>
             </Suspense>
 
           </div>
