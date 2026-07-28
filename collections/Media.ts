@@ -20,17 +20,18 @@ export const Media: CollectionConfig = {
       defaultLimit: 20,
       limits: [10, 20, 50, 100],
     },
+    components: {
+      views: {
+        list: {
+          Component: '@/components/media/GalleryListView#GalleryListView',
+        },
+      },
+    },
   },
   indexes: [
-    {
-      fields: ['filename'],
-    },
-    {
-      fields: ['mimeType'],
-    },
-    {
-      fields: ['createdAt'],
-    },
+    { fields: ['filename'] },
+    { fields: ['mimeType'] },
+    { fields: ['createdAt'] },
   ],
   fields: [
     {
