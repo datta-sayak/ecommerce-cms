@@ -20,6 +20,15 @@ export default buildConfig({
   csrf: [process.env.PAYLOAD_PUBLIC_SERVER_URL!],
   admin: {
     user: Users.slug,
+    components: {
+      graphics: {
+        Logo: "@/components/admin/Logo",
+        Icon: '@/components/admin/Icon',
+      },
+    },
+    meta: {
+      titleSuffix: "| Soujata Exim Admin",
+    },
     importMap: {
       baseDir: path.resolve(dirname),
     },
