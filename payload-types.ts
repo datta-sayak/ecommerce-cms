@@ -188,7 +188,7 @@ export interface Product {
   coverImage: number | Media;
   gallery?: (number | Media)[] | null;
   specifications: {
-    code?: string | null;
+    code: string;
     fabric?: string | null;
     height: number;
     width: number;

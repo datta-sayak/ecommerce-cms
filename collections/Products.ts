@@ -81,6 +81,8 @@ export const Products: CollectionConfig = {
           name: "code",
           label: "Product code",
           type: "text",
+          required: true,
+          unique: true,
           index: true,
         },
         {

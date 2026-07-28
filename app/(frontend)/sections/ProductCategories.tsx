@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { ChevronRight } from 'lucide-react';
 import { getPayload } from 'payload';
 import config from '@/payload.config';
+import { getCategorySlug } from '@/utils/productRoutes';
 import {
   Carousel,
   CarouselContent,
@@ -95,7 +96,7 @@ export default async function ProductCategories() {
 
                         {/* Explore Link */}
                         <Link
-                          href={`/products?category=${category.id}`}
+                          href={`/products?category=${getCategorySlug(category.name)}`}
                           className="inline-flex items-center ml-3 text-xs mt-2 mb-6 font-semibold text-primary-green transition hover:text-primary-dark group/link md:text-sm"
                         >
                           Explore Products

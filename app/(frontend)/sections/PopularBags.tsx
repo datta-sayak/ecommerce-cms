@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { ChevronRight } from 'lucide-react';
 import { getPayload } from 'payload';
 import config from '@/payload.config';
+import { getProductSlug } from '@/utils/productRoutes';
 
 async function getFeaturedProducts() {
   const payload = await getPayload({ config });
@@ -110,7 +111,7 @@ export default async function PopularBags() {
 
                   {/* Explore Link */}
                   <Link
-                    href={`/products/${product.id}`}
+                    href={`/products/${getProductSlug(product.specifications.code)}`}
                     className="inline-flex items-center text-xs sm:text-sm md:text-base text-emerald-600 font-semibold hover:text-emerald-700 transition group"
                   >
                     Explore the Product
