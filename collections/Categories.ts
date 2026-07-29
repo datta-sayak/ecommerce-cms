@@ -8,6 +8,7 @@ export const Categories: CollectionConfig = {
     read: () => true,
   },
   admin: {
+    hideAPIURL: true,
     enableListViewSelectAPI: true,
     useAsTitle: 'name',
     defaultColumns: ['name'],

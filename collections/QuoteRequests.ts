@@ -12,6 +12,7 @@ export const QuoteRequests: CollectionConfig = {
     delete: ({ req }) => !!req.user,
   },
   admin: {
+    hideAPIURL: true,
     enableListViewSelectAPI: true,
     useAsTitle: 'fullName',
     defaultColumns: ['fullName', 'email', 'status', 'createdAt'],

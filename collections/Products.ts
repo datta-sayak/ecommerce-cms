@@ -8,6 +8,7 @@ export const Products: CollectionConfig = {
     read: () => true,
   },
   admin: {
+    hideAPIURL: true,
     enableListViewSelectAPI: true,
     useAsTitle: 'name',
     defaultColumns: [

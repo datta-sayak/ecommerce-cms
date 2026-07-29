@@ -5,6 +5,7 @@ export const Users: CollectionConfig = {
   versions: false,
   disableDuplicate: true,
   admin: {
+    hideAPIURL: true,
     enableListViewSelectAPI: true,
     useAsTitle: 'email',
     components: {

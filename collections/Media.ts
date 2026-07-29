@@ -9,6 +9,7 @@ export const Media: CollectionConfig = {
     read: () => true,
   },
   admin: {
+    hideAPIURL: true,
     enableListViewSelectAPI: true,
     pagination: {
       defaultLimit: 20,
