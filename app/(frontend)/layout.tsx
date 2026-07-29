@@ -7,6 +7,8 @@ import config from "@/payload.config";
 import StoreHydrator from "@/components/StoreHydrator";
 import type { Category, Product } from "@/payload-types";
 
+export const dynamic = 'force-dynamic';
+
 const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const hankenGrotesk = Hanken_Grotesk({
