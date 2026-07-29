@@ -45,6 +45,7 @@ export const Media: CollectionConfig = {
     },
   ],
   upload: {
+    mimeTypes: ['image/*'],
     pasteURL: false,
     bulkUpload: false,
     focalPoint: false,

@@ -176,6 +176,7 @@ export interface Category {
   name: string;
   description?: string | null;
   coverImage: number | Media;
+  active?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -410,6 +411,7 @@ export interface CategorySelect<T extends boolean = true> {
   name?: T;
   description?: T;
   coverImage?: T;
+  active?: T;
   updatedAt?: T;
   createdAt?: T;
 }

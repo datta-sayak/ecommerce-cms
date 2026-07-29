@@ -45,5 +45,11 @@ export const Categories: CollectionConfig = {
       required: true,
       hasMany: false,
     },
+    {
+      name: "active",
+      type: "checkbox",
+      defaultValue: true,
+      index: true,
+    },
   ],
 }

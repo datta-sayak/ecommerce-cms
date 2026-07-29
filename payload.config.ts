@@ -35,7 +35,7 @@ export default buildConfig({
     },
     meta: {
       title: 'Dashboard',
-      titleSuffix: "| Soujata Exim",
+      titleSuffix: " - Soujata Exim",
       icons: [{
         rel: 'icon',
         url: '/logo.png',
