@@ -27,6 +27,7 @@ import { ReadOnlyField as ReadOnlyField_430334b981dff05dcd8f7e9569a53b6d } from 
 import { default as default_534076e2c753ea5d539a54b05f456b1b } from '@/components/admin/Icon'
 import { default as default_a44df17d0fc3dcd873dae43dc3bf66bd } from '@/components/admin/Logo'
 import { QuoteCountWidget as QuoteCountWidget_700cc89d0a6b5324e86579e72cd844e6 } from '@/components/admin/QuoteCountWidget'
+import { EnquiryCountWidget as EnquiryCountWidget_aad4293408207245e49821d864610a3c } from '@/components/admin/EnquiryCountWidget'
 import { CollectionCards as CollectionCards_f9c02e79a4aed9a3924487c0cd4cafb1 } from '@payloadcms/next/rsc'
 
 /** @type import('payload').ImportMap */
@@ -60,5 +61,6 @@ export const importMap = {
   "@/components/admin/Icon#default": default_534076e2c753ea5d539a54b05f456b1b,
   "@/components/admin/Logo#default": default_a44df17d0fc3dcd873dae43dc3bf66bd,
   "@/components/admin/QuoteCountWidget#QuoteCountWidget": QuoteCountWidget_700cc89d0a6b5324e86579e72cd844e6,
+  "@/components/admin/EnquiryCountWidget#EnquiryCountWidget": EnquiryCountWidget_aad4293408207245e49821d864610a3c,
   "@payloadcms/next/rsc#CollectionCards": CollectionCards_f9c02e79a4aed9a3924487c0cd4cafb1
 }

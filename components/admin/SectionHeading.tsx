@@ -27,14 +27,14 @@ export function SectionHeading({ field }: Props) {
       <p
         style={{
           margin: 0,
-          fontSize: '11px',
+          fontSize: '14px',
           fontWeight: 700,
           textTransform: 'uppercase',
           letterSpacing: '0.09em',
           color: 'var(--theme-elevation-500)',
         }}
       >
-        {title}
+        [{title}]
       </p>
     </div>
   );

@@ -72,6 +72,7 @@ export interface Config {
     category: Category;
     products: Product;
     'quote-requests': QuoteRequest;
+    enquiries: Enquiry;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -84,6 +85,7 @@ export interface Config {
     category: CategorySelect<false> | CategorySelect<true>;
     products: ProductsSelect<false> | ProductsSelect<true>;
     'quote-requests': QuoteRequestsSelect<false> | QuoteRequestsSelect<true>;
+    enquiries: EnquiriesSelect<false> | EnquiriesSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -252,6 +254,27 @@ export interface QuoteRequest {
   createdAt: string;
 }
 /**
+ * Product enquiries submitted via the product pages.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "enquiries".
+ */
+export interface Enquiry {
+  id: number;
+  fullName: string;
+  email: string;
+  phone?: string | null;
+  company?: string | null;
+  country?: string | null;
+  productName: string;
+  productCode?: string | null;
+  quantity?: string | null;
+  message?: string | null;
+  status?: ('new' | 'in-review' | 'replied' | 'closed') | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
@@ -294,6 +317,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'quote-requests';
         value: number | QuoteRequest;
+      } | null)
+    | ({
+        relationTo: 'enquiries';
+        value: number | Enquiry;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -424,6 +451,24 @@ export interface QuoteRequestsSelect<T extends boolean = true> {
   company?: T;
   country?: T;
   productType?: T;
+  quantity?: T;
+  message?: T;
+  status?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "enquiries_select".
+ */
+export interface EnquiriesSelect<T extends boolean = true> {
+  fullName?: T;
+  email?: T;
+  phone?: T;
+  company?: T;
+  country?: T;
+  productName?: T;
+  productCode?: T;
   quantity?: T;
   message?: T;
   status?: T;

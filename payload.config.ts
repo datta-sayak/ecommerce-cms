@@ -12,6 +12,7 @@ import { Media } from "./collections/Media";
 import { Categories } from "./collections/Categories";
 import { Products } from "./collections/Products";
 import { QuoteRequests } from "./collections/QuoteRequests";
+import { Enquiries } from "./collections/Enquiries";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -29,6 +30,7 @@ export default buildConfig({
       },
       afterNavLinks: [
         '@/components/admin/QuoteCountWidget#QuoteCountWidget',
+        '@/components/admin/EnquiryCountWidget#EnquiryCountWidget',
       ],
     },
     meta: {
@@ -44,6 +46,7 @@ export default buildConfig({
     Categories,
     Products,
     QuoteRequests,
+    Enquiries,
   ],
   secret: process.env.PAYLOAD_SECRET || "",
   editor: lexicalEditor(),

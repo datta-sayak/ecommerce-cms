@@ -1,15 +1,15 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { MessageSquare } from 'lucide-react';
+import { HelpCircle } from 'lucide-react';
 import { supabase } from '@/utils/supabaseClient';
 
-export function QuoteCountWidget() {
+export function EnquiryCountWidget() {
   const [count, setCount] = useState<number | null>(null);
 
   const fetchCount = async () => {
     try {
-      const res = await fetch('/api/quote-count', { cache: 'no-store' });
+      const res = await fetch('/api/enquiry-count', { cache: 'no-store' });
       if (res.ok) {
         const data = await res.json();
         setCount(data.count ?? 0);
@@ -27,12 +27,12 @@ export function QuoteCountWidget() {
       return;
     }
 
-    // Subscribe to realtime changes on the quote_requests table
+    // Subscribe to realtime changes on the enquiries table
     const channel = client
-      .channel('quote-requests-changes')
+      .channel('enquiries-changes')
       .on(
         'postgres_changes',
-        { event: '*', schema: 'public', table: 'quote_requests' },
+        { event: '*', schema: 'public', table: 'enquiries' },
         () => {
           fetchCount();
         }
@@ -57,11 +57,11 @@ export function QuoteCountWidget() {
         fontSize: '13px',
         fontWeight: 600,
         color: 'var(--theme-text)',
-        margin: '8px 0',
+        margin: '0 0 8px 0',
       }}
     >
-      <MessageSquare size={16} style={{ color: 'var(--theme-success-500)' }} />
-      Quote Requests
+      <HelpCircle size={16} style={{ color: 'var(--theme-success-500)' }} />
+      Enquiries
       <span
         style={{
           display: 'inline-flex',

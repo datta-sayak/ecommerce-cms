@@ -2,7 +2,7 @@ import Header from '../../sections/Header';
 import Footer from '../../sections/Footer';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowLeft, ChevronRight } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import { notFound } from 'next/navigation';
 import { getPayload } from 'payload';
 import config from '@/payload.config';
@@ -126,9 +126,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
 
   const category = getCategory(product.category);
   const gallery = getGallery(product);
-  const heroImage = gallery[0];
   const relatedProducts = await getRelatedProducts(product);
-  const dimensions = `H ${product.specifications.height} x W ${product.specifications.width} ${product.specifications.unit}`;
 
   return (
     <main className="min-h-screen bg-white">
@@ -162,6 +160,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
               <ProductTabs 
                 description={product.longDescription || product.shortDescription} 
                 highlights={product.productHighlights}
+                productName={product.name}
                 specifications={{
                   code: product.specifications.code,
                   fabric: product.specifications.fabric,
