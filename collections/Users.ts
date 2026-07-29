@@ -1,3 +1,4 @@
+import { resetPasswordTemplate } from '@/templates/resetPasswordTemplate';
 import type { CollectionConfig } from 'payload'
 
 export const Users: CollectionConfig = {
@@ -19,7 +20,20 @@ export const Users: CollectionConfig = {
       },
     },
   },
-  auth: true,
+  auth: {
+    forgotPassword: {
+      generateEmailSubject: () => 'Reset Soujata Exim dashboard password',
+      generateEmailHTML: ({ token, user } = {}) => {
+        const URL = process.env.PAYLOAD_PUBLIC_SERVER_URL!;
+        const resetURL = `${URL}/admin/reset/${token}`;
+        return resetPasswordTemplate({
+            user: user.email ?? 'there',
+            resetURL,
+            URL
+          })
+      }
+    },
+  },
   fields: [
     // Email added by default
     // Add more fields as needed

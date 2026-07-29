@@ -13,6 +13,7 @@ import { Categories } from "./collections/Categories";
 import { Products } from "./collections/Products";
 import { QuoteRequests } from "./collections/QuoteRequests";
 import { Enquiries } from "./collections/Enquiries";
+import { resendAdapter } from "@payloadcms/email-resend";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -21,6 +22,11 @@ export default buildConfig({
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL,
   cors: [process.env.PAYLOAD_PUBLIC_SERVER_URL!],
   csrf: [process.env.PAYLOAD_PUBLIC_SERVER_URL!],
+  email: resendAdapter({
+    defaultFromAddress: 'no-reply@sayakdatta.tech',
+    defaultFromName: 'Soujata Exim',
+    apiKey: process.env.RESEND_API_KEY || '',
+  }),
   admin: {
     user: Users.slug,
     components: {
