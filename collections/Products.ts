@@ -3,10 +3,12 @@ import type { CollectionConfig } from 'payload'
 export const Products: CollectionConfig = {
   slug: 'products',
   versions: false,
+  disableDuplicate: true,
   access: {
     read: () => true,
   },
   admin: {
+    enableListViewSelectAPI: true,
     useAsTitle: 'name',
     defaultColumns: [
       'name',

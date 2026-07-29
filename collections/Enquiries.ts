@@ -12,6 +12,7 @@ export const Enquiries: CollectionConfig = {
     delete: ({ req }) => !!req.user,
   },
   admin: {
+    enableListViewSelectAPI: true,
     useAsTitle: 'fullName',
     defaultColumns: ['fullName', 'email', 'productName', 'createdAt'],
     description: 'Product enquiries submitted via the product pages.',

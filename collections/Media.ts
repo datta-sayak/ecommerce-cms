@@ -4,10 +4,12 @@ import type { CollectionConfig } from 'payload'
 export const Media: CollectionConfig = {
   slug: 'media',
   versions: false,
+  disableDuplicate: true,
   access: {
     read: () => true,
   },
   admin: {
+    enableListViewSelectAPI: true,
     pagination: {
       defaultLimit: 20,
       limits: [10, 20, 50, 100],

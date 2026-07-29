@@ -12,8 +12,9 @@ export const QuoteRequests: CollectionConfig = {
     delete: ({ req }) => !!req.user,
   },
   admin: {
+    enableListViewSelectAPI: true,
     useAsTitle: 'fullName',
-    defaultColumns: ['fullName', 'email', 'status'],
+    defaultColumns: ['fullName', 'email', 'status', 'createdAt'],
     pagination: {
       defaultLimit: 25,
       limits: [25, 50, 100],
