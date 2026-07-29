@@ -7,6 +7,16 @@ export const Users: CollectionConfig = {
   admin: {
     enableListViewSelectAPI: true,
     useAsTitle: 'email',
+    components: {
+      edit: {
+        beforeDocumentControls: [{
+          path: '@/components/admin/BackButton#BackButton',
+          clientProps: {
+            collections: 'users',
+          },
+        }],
+      },
+    },
   },
   auth: true,
   fields: [

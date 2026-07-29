@@ -22,6 +22,16 @@ export const Products: CollectionConfig = {
       limits: [10, 20, 50, 100],
     },
     listSearchableFields: ['name', 'specifications.code'],
+    components: {
+      edit: {
+        beforeDocumentControls: [{
+          path: '@/components/admin/BackButton#BackButton',
+          clientProps: {
+            collections: 'products',
+          },
+        }],
+      },
+    },
   },
   indexes: [
     {

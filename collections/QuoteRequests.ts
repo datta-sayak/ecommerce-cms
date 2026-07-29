@@ -20,6 +20,16 @@ export const QuoteRequests: CollectionConfig = {
       limits: [25, 50, 100],
     },
     description: 'Quote requests submitted via the website.',
+    components: {
+      edit: {
+        beforeDocumentControls: [{
+          path: '@/components/admin/BackButton#BackButton',
+          clientProps: {
+            collections: 'quote-requests',
+          },
+        }],
+      },
+    },
   },
   fields: [
     {

@@ -15,6 +15,16 @@ export const Categories: CollectionConfig = {
       defaultLimit: 20,
       limits: [10, 20, 50, 100],
     },
+    components: {
+      edit: {
+        beforeDocumentControls: [{
+          path: '@/components/admin/BackButton#BackButton',
+          clientProps: {
+            collections: 'category',
+          },
+        }],
+      },
+    },
   },
   fields: [
     {

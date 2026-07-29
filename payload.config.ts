@@ -34,7 +34,13 @@ export default buildConfig({
       ],
     },
     meta: {
-      titleSuffix: "| Soujata Exim Admin",
+      title: 'Dashboard',
+      titleSuffix: "| Soujata Exim",
+      icons: [{
+        rel: 'icon',
+        url: '/logo.png',
+      },
+    ],
     },
     importMap: {
       baseDir: path.resolve(dirname),

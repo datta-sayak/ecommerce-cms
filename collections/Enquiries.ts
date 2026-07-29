@@ -16,6 +16,16 @@ export const Enquiries: CollectionConfig = {
     useAsTitle: 'fullName',
     defaultColumns: ['fullName', 'email', 'productName', 'createdAt'],
     description: 'Product enquiries submitted via the product pages.',
+    components: {
+      edit: {
+        beforeDocumentControls: [{
+          path: '@/components/admin/BackButton#BackButton',
+          clientProps: {
+            collections: 'enquiries',
+          },
+        }],
+      },
+    },
   },
   fields: [
     {

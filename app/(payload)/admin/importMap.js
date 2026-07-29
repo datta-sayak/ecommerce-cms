@@ -1,3 +1,4 @@
+import { BackButton as BackButton_a9b93f66c27cfaab96a0cd73b2bb82ee } from '@/components/admin/BackButton'
 import { GalleryListView as GalleryListView_d5f6ae71c8ef60bac03d172f4874458a } from '@/components/media/GalleryListView'
 import { RscEntryLexicalCell as RscEntryLexicalCell_44fe37237e0ebf4470c9990d8cb7b07e } from '@payloadcms/richtext-lexical/rsc'
 import { RscEntryLexicalField as RscEntryLexicalField_44fe37237e0ebf4470c9990d8cb7b07e } from '@payloadcms/richtext-lexical/rsc'
@@ -32,6 +33,7 @@ import { CollectionCards as CollectionCards_f9c02e79a4aed9a3924487c0cd4cafb1 } f
 
 /** @type import('payload').ImportMap */
 export const importMap = {
+  "@/components/admin/BackButton#BackButton": BackButton_a9b93f66c27cfaab96a0cd73b2bb82ee,
   "@/components/media/GalleryListView#GalleryListView": GalleryListView_d5f6ae71c8ef60bac03d172f4874458a,
   "@payloadcms/richtext-lexical/rsc#RscEntryLexicalCell": RscEntryLexicalCell_44fe37237e0ebf4470c9990d8cb7b07e,
   "@payloadcms/richtext-lexical/rsc#RscEntryLexicalField": RscEntryLexicalField_44fe37237e0ebf4470c9990d8cb7b07e,
