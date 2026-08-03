@@ -16,6 +16,14 @@ export const Media: CollectionConfig = {
       limits: [10, 20, 50, 100],
     },
     components: {
+      edit: {
+        beforeDocumentControls: [{
+          path: '@/components/admin/BackButton#BackButton',
+          clientProps: {
+            collections: 'media',
+          },
+        }],
+      },
       views: {
         list: {
           Component: '@/components/media/GalleryListView#GalleryListView',

@@ -10,7 +10,7 @@ export function BackButton({ collections }: Props) {
   return (
     <Link href={`/admin/collections/${collections}`}>
       <Button type='button'>
-        Back to {collections}
+        Back
       </Button>
     </Link>
   )
