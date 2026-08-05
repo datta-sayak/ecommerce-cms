@@ -228,7 +228,7 @@ export default function AboutPage() {
                     alt={flag.alt}
                     width={74}
                     height={50}
-                    className="h-12 w-auto object-contain md:h-20"
+                    className="h-15 w-auto object-contain md:h-20"
                   />
                 </div>
               ))}

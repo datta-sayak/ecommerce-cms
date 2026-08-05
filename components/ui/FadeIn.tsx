@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ReactNode } from 'react';
+import { ReactNode, memo } from 'react';
 
 interface FadeInProps {
   children: ReactNode;
@@ -12,7 +12,7 @@ interface FadeInProps {
   viewMargin?: string;
 }
 
-export function FadeIn({
+export const FadeIn = memo(function FadeIn({
   children,
   delay = 0,
   direction = 'up',
@@ -52,4 +52,4 @@ export function FadeIn({
       {children}
     </motion.div>
   );
-}
+});

@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ChevronRight } from 'lucide-react';
 import { useAppStore } from '@/store/useAppStore';
+import { memo } from 'react';
 import type { Category, Media } from '@/payload-types';
 import { getProductSlug } from '@/utils/productRoutes';
 import { PopularBagsGridSkeleton } from '@/components/HomeSkeletons';
@@ -17,7 +18,7 @@ function getCategoryName(category: number | Category) {
   return typeof category === 'object' ? category.name : 'Product';
 }
 
-function FeaturedProductsGrid() {
+const FeaturedProductsGrid = memo(function FeaturedProductsGrid() {
   const featured = useAppStore((s) => s.featuredProducts);
 
   if (featured.length === 0) {
@@ -42,6 +43,7 @@ function FeaturedProductsGrid() {
                 alt={product.name}
                 width={200}
                 height={200}
+                sizes="(min-width: 768px) 232px, 168px"
                 className="object-cover w-full h-full"
                 loading="lazy"
                 quality={75}
@@ -92,19 +94,18 @@ function FeaturedProductsGrid() {
       })}
     </div>
   );
-}
+});
 
 export default function PopularBags() {
   return (
-    <section className="relative py-16 md:py-24 px-4 md:px-8 lg:px-12 bg-white">
-      {/* Background Image */}
-      <Image
-        src="/background-detail.png"
-        alt="Background pattern"
-        fill
-        loading="eager"
-        className="absolute inset-0 object-cover opacity-2"
-        quality={60}
+    <section className="relative py-16 md:py-24 px-4 md:px-8 lg:px-12 bg-white will-change-transform">
+      <div 
+        className="absolute inset-0 opacity-2 pointer-events-none"
+        style={{
+          backgroundImage: 'url(/background-detail.png)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
       />
 
       <div className="relative z-10 max-w-7xl mx-auto">
