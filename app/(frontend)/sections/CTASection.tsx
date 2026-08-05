@@ -10,7 +10,7 @@ export default function CTASection() {
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* Content */}
         <div className="text-center">
-          <h2 className="text-3xl md:text-3xl lg:text-4xl font-bold text-white mb-6 tracking-wide">
+          <h2 className="text-3xl md:text-3xl lg:text-4xl font-semibold text-white mb-6 tracking-wide">
             Ready to Make the Switch to Sustainable Bags?
           </h2>
           <p className="text-sm lg:text-lg text-white/70 max-w-2xl mx-auto mb-8">

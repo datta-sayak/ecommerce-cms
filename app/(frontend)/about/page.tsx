@@ -57,7 +57,7 @@ export default function AboutPage() {
 
       <section className="relative overflow-hidden border-b-2 border-bg-light bg-white px-4 py-12 md:px-8 md:py-16 lg:px-12">
         <div className="relative mx-auto max-w-5xl text-center">
-          <h1 className="text-3xl font-bold tracking-tight text-primary-dark md:text-4xl lg:text-[2.35rem]">
+          <h1 className="text-3xl font-semibold tracking-tight text-primary-dark md:text-4xl lg:text-[2.35rem]">
             About <span className="text-primary-green">Soujata Exim</span>
           </h1>
           <p className="mx-auto mt-4 max-w-3xl text-base leading-6 text-text-muted md:text-lg">
@@ -81,7 +81,7 @@ export default function AboutPage() {
           </div>
 
           <div className="relative max-w-xl">
-            <h2 className="text-3xl font-bold tracking-tight text-primary-dark md:text-4xl">
+            <h2 className="text-3xl font-semibold tracking-tight text-primary-dark md:text-4xl">
               The Story Behind <span className="text-primary-green">Every Stitch</span>
             </h2>
             <div className="mt-6 space-y-5 text-base leading-7 text-text-muted md:text-lg">
@@ -115,7 +115,7 @@ export default function AboutPage() {
               height={72} 
               className="absolute right-5 top-4" 
             />
-            <h3 className="text-2xl font-bold md:text-3xl">Our Mission</h3>
+            <h3 className="text-2xl font-semibold md:text-3xl">Our Mission</h3>
             <p className="mt-4 max-w-xl text-sm leading-6 text-white/85 md:text-base">
               Founded in West Bengal, Soujata Exim grew from a small unit to a global sustainable
               bag exporter. Our core mission: affordable, earth-conscious alternatives to plastic
@@ -131,7 +131,7 @@ export default function AboutPage() {
               height={72} 
               className="absolute right-5 top-4" 
             />
-            <h3 className="text-2xl font-bold text-primary-dark md:text-3xl">Our Vision</h3>
+            <h3 className="text-2xl font-semibold text-primary-dark md:text-3xl">Our Vision</h3>
             <p className="mt-4 max-w-xl text-sm leading-6 text-text-muted md:text-base">
               To become the most trusted name in sustainable bag exports, recognized globally for
               quality, innovation, and customer focus. We aim to expand to 50+ countries with
@@ -149,7 +149,7 @@ export default function AboutPage() {
           className="pointer-events-none object-cover opacity-2"
         />
         <div className="relative mx-auto max-w-4xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-primary-dark md:text-4xl">
+          <h2 className="text-3xl font-semibold tracking-tight text-primary-dark md:text-4xl">
             Meet the <span className="text-primary-green">Founder</span>
           </h2>
           <p className="mt-4 text-base text-text-muted md:text-lg">The vision behind Soujata Exim</p>
@@ -170,7 +170,7 @@ export default function AboutPage() {
 
       <section className="px-4 py-12 md:px-8 md:py-16 lg:px-12 border-2 border-bg-light">
         <div className="mx-auto max-w-7xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-primary-dark md:text-4xl">
+          <h2 className="text-3xl font-semibold tracking-tight text-primary-dark md:text-4xl">
             Our <span className="text-primary-green">Manufacturing</span> Process
           </h2>
           <p className="mx-auto mt-4 max-w-3xl text-base leading-6 text-text-muted md:text-lg">
@@ -211,7 +211,7 @@ export default function AboutPage() {
           className="pointer-events-none object-cover opacity-2"
         />
         <div className="relative mx-auto max-w-5xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-primary-dark md:text-4xl">
+          <h2 className="text-3xl font-semibold tracking-tight text-primary-dark md:text-4xl">
             <span className="text-primary-green">Global</span> Export Network
           </h2>
           <p className="mx-auto mt-4 max-w-3xl text-base leading-6 text-text-muted md:text-lg">

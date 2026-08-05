@@ -104,7 +104,7 @@ export default function ProductCategories() {
         {/* Header */}
         <FadeIn delay={0.1}>
           <div className="text-center mb-8 md:mb-12 lg:mb-16">
-            <h2 className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold mb-2 md:mb-4">
+            <h2 className="text-xl sm:text-xl md:text-3xl lg:text-4xl font-semibold mb-2 md:mb-4">
               Our <span className="text-primary-green">Eco-Friendly</span> Bag Categories
             </h2>
             <p className="text-sm sm:text-base md:text-lg text-text-muted max-w-2xl mx-auto">

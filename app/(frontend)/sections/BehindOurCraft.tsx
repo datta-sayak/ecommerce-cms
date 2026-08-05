@@ -32,7 +32,7 @@ export default function BehindOurCraft() {
           {/* Header */}
           <FadeIn delay={0.1}>
             <div className="text-center mb-12 md:mb-16">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary-dark mb-4">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-primary-dark mb-4">
                 Behind Our <span className="text-primary-green">Sustainable</span> Craft
               </h2>
               <p className="text-lg text-text-muted max-w-2xl mx-auto">

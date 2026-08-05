@@ -39,12 +39,12 @@ const certifications = [
 
 export default function Certifications() {
   return (
-    <section className="bg-white border-2 border-bg-light py-8 md:py-12 px-4 md:px-8 lg:px-12">
+    <section className="bg-white border-2 border-bg-light py-8 md:py-18 px-4 md:px-8 lg:px-12">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <FadeIn delay={0.1}>
           <div className="text-center mb-6 md:mb-8 lg:mb-10">
-            <h2 className="text-lg sm:text-xl md:text-4xl lg:text-5xl font-bold text-primary-dark mb-1 md:mb-2">
+            <h2 className="text-lg sm:text-xl md:text-3xl lg:text-4xl font-semibold text-primary-dark mb-1 md:mb-2">
               Government & Industry <span className="text-primary-green">Certifications</span>
             </h2>
             <p className="text-xs sm:text-sm md:text-lg text-text-muted">

@@ -36,7 +36,7 @@ export default function Testimonials() {
         {/* Header */}
         <FadeIn delay={0.1}>
           <div className="text-center mb-6 md:mb-8 lg:mb-12">
-            <h2 className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold text-primary-dark mb-2 md:mb-4">
+            <h2 className="text-xl sm:text-xl md:text-3xl lg:text-4xl font-semibold text-primary-dark mb-2 md:mb-4">
               What <span className="text-primary-green">Our Clients</span> Say
             </h2>
             <p className="text-sm sm:text-base md:text-lg text-text-muted max-w-2xl mx-auto">

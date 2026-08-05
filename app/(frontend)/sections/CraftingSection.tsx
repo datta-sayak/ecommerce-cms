@@ -12,7 +12,7 @@ export default function CraftingSection() {
           {/* Left Content */}
           <div>
             <FadeIn delay={0.1} direction="right">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-primary-dark mb-6">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-primary-dark mb-6">
                 Crafting <span className="text-primary-green">Sustainability</span> from West Bengal
               </h2>
             </FadeIn>
