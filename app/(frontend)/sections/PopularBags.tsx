@@ -18,14 +18,11 @@ function getCategoryName(category: number | Category) {
 }
 
 function FeaturedProductsGrid() {
-  const allProducts = useAppStore((s) => s.products);
+  const featured = useAppStore((s) => s.featuredProducts);
 
-  if (allProducts.length === 0) {
+  if (featured.length === 0) {
     return <PopularBagsGridSkeleton />;
   }
-
-  // Filter featured+active products client-side — same criteria as the old server query
-  const featured = allProducts.filter((p) => p.featured === true && p.active === true);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 lg:gap-8 mb-12">
@@ -46,6 +43,8 @@ function FeaturedProductsGrid() {
                 width={200}
                 height={200}
                 className="object-cover w-full h-full"
+                loading="lazy"
+                quality={75}
               />
             </div>
 
@@ -103,8 +102,9 @@ export default function PopularBags() {
         src="/background-detail.png"
         alt="Background pattern"
         fill
-        className="absolute inset-0 object-cover opacity-2"
         loading="eager"
+        className="absolute inset-0 object-cover opacity-2"
+        quality={60}
       />
 
       <div className="relative z-10 max-w-7xl mx-auto">
@@ -121,9 +121,7 @@ export default function PopularBags() {
         </FadeIn>
 
         {/* Product Grid — reads from Zustand store */}
-        <FadeIn delay={0.2} direction="up">
-          <FeaturedProductsGrid />
-        </FadeIn>
+        <FeaturedProductsGrid />
 
         {/* View All Products Button */}
         <FadeIn delay={0.3} direction="up">
