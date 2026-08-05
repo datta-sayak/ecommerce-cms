@@ -27,7 +27,8 @@ export function SectionHeading({ field }: Props) {
       <p
         style={{
           margin: 0,
-          fontSize: '14px',
+          paddingTop: '8px',
+          fontSize: '16px',
           fontWeight: 700,
           textTransform: 'uppercase',
           letterSpacing: '0.09em',

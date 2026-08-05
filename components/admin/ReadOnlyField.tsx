@@ -38,7 +38,7 @@ export function ReadOnlyField({ path, field }: Props) {
       style={{
         display: 'flex',
         alignItems: 'flex-start',
-        padding: '4px 0',
+        padding: '5px 0',
         gap: '16px',
       }}
     >
@@ -48,7 +48,7 @@ export function ReadOnlyField({ path, field }: Props) {
           margin: 0,
           width: '180px',
           flexShrink: 0,
-          fontSize: '13px',
+          fontSize: '15px',
           fontWeight: 600,
           color: 'var(--theme-elevation-500)',
         }}
@@ -61,7 +61,7 @@ export function ReadOnlyField({ path, field }: Props) {
         style={{
           margin: 0,
           flex: 1,
-          fontSize: '14px',
+          fontSize: '16px',
           color: display ? 'var(--theme-text)' : 'var(--theme-elevation-350)',
           fontStyle: display ? 'normal' : 'italic',
           whiteSpace: 'pre-wrap',

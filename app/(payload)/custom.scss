@@ -33,12 +33,12 @@
   --theme-success-900: #17382a;
   --theme-success-1000: #132c22;
   
-  /* Text colors for light theme - darker for better visibility */
-  --theme-text: #1a1d1b;
-  --theme-text-secondary: #2d3431;
+  /* Text colors for light theme - much darker for readability */
+  --theme-text: #0f1210;
+  --theme-text-secondary: #1a1d1b;
   
-  /* Border colors */
-  --theme-border-color: #e4e6e4;
+  --theme-border-color: var(--theme-success-500);
+  --theme-bg: #eef5f1;
   
   /* Override default theme to light */
   color-scheme: light;
@@ -46,7 +46,7 @@
 
 body {
   font-size: 1rem;
-  background-color: var(--theme-elevation-100);
+  background-color: var(--theme-success-50);
 }
 
 /* Force light theme on admin panel */
@@ -84,4 +84,58 @@ table td code {
   background-color: var(--theme-elevation-100) !important;
   padding: 0.25rem 0.5rem !important;
   border-radius: 0.25rem !important;
+}
+
+/* Global text - make everything darker and readable */
+* {
+  color: var(--theme-text) !important;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--theme-text) !important;
+  font-weight: 600 !important;
+}
+
+/* Labels */
+label {
+  color: var(--theme-text) !important;
+  font-weight: 500 !important;
+}
+
+/* Form inputs */
+input,
+textarea,
+select {
+  color: var(--theme-text) !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--theme-text-secondary) !important;
+  opacity: 0.7 !important;
+}
+
+/* Checkboxes and radio buttons - use green accent */
+input[type="checkbox"],
+input[type="radio"] {
+  accent-color: var(--theme-success-500) !important;
+}
+
+/* Field descriptions and help text */
+[class*="description"],
+[class*="helpText"],
+small {
+  color: var(--theme-text-secondary) !important;
+}
+
+/* Required asterisks - red for visibility */
+[class*="required"],
+.required {
+  color: #e74c3c !important;
+}
+
+/* Vertical border between sidebar and main content */
+aside[class*="nav"] {
+  border-right: 2px solid var(--theme-success-200) !important;
 }
