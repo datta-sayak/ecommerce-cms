@@ -2,6 +2,7 @@
 
 import { CheckCircle, ChevronRight } from 'lucide-react';
 import { FadeIn } from '@/components/ui/FadeIn';
+import Image from 'next/image';
 
 export default function CraftingSection() {
   return (
@@ -11,7 +12,7 @@ export default function CraftingSection() {
           {/* Left Content */}
           <div>
             <FadeIn delay={0.1} direction="right">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary-dark mb-6">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-primary-dark mb-6">
                 Crafting <span className="text-primary-green">Sustainability</span> from West Bengal
               </h2>
             </FadeIn>
@@ -58,12 +59,24 @@ export default function CraftingSection() {
             <div className="flex flex-col gap-4">
               {/* Large square box */}
               <div className="flex-1 bg-black/20 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-                {/* image */}
+                <Image
+                  src="/images/fac1.jpeg"
+                  alt="Sustainable bag production"
+                  height={500}
+                  width={500}
+                  className="w-full h-full object-cover"
+                />
               </div>
               
               {/* Small horizontal box - bottom left */}
               <div className="h-24 md:h-32 bg-black/20 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-                {/* image */}
+                 <Image
+                  src="/images/fac2.jpeg"
+                  alt="Sustainable bag production"
+                  height={500}
+                  width={500}
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
             
@@ -71,12 +84,24 @@ export default function CraftingSection() {
             <div className="flex flex-col gap-4">
               {/* Small horizontal box - top right */}
               <div className="h-24 md:h-32 bg-black/20 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-                {/* image */}
+                 <Image
+                  src="/images/fac1.jpeg"
+                  alt="Sustainable bag production"
+                  height={500}
+                  width={500}
+                  className="w-full h-full object-cover"
+                />
               </div>
               
               {/* Tall vertical box */}
               <div className="flex-1 bg-black/20 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-                {/* image */}
+                <Image
+                  src="/images/fac2.jpeg"
+                  alt="Sustainable bag production"
+                  height={500}
+                  width={500}
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
           </FadeIn>
