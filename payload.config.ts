@@ -29,6 +29,7 @@ export default buildConfig({
   }),
   admin: {
     user: Users.slug,
+    theme: 'light',
     components: {
       graphics: {
         Logo: "@/components/admin/Logo",

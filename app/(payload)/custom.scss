@@ -1,7 +1,87 @@
 :root {
   font-size: 16px;
+  
+  /* Force light theme */
+  --theme-elevation-0: #ffffff;
+  --theme-elevation-50: #f9faf9;
+  --theme-elevation-100: #f4f5f4;
+  --theme-elevation-150: #eff0ef;
+  --theme-elevation-200: #e9ebe9;
+  --theme-elevation-250: #e4e6e4;
+  --theme-elevation-300: #dfe1df;
+  --theme-elevation-400: #d5d7d5;
+  --theme-elevation-500: #cbcdcb;
+  --theme-elevation-600: #b8bab8;
+  --theme-elevation-700: #a5a7a5;
+  --theme-elevation-800: #929492;
+  --theme-elevation-900: #7f817f;
+  --theme-elevation-1000: #6c6e6c;
+  
+  /* Green accent color based on #27684A */
+  --theme-success-50: #eef5f1;
+  --theme-success-100: #d4e6dc;
+  --theme-success-150: #bbd8c7;
+  --theme-success-200: #a1cab2;
+  --theme-success-250: #88bc9d;
+  --theme-success-300: #6eae88;
+  --theme-success-350: #55a073;
+  --theme-success-400: #3b925e;
+  --theme-success-500: #27684A;
+  --theme-success-600: #235c42;
+  --theme-success-700: #1f503a;
+  --theme-success-800: #1b4432;
+  --theme-success-900: #17382a;
+  --theme-success-1000: #132c22;
+  
+  /* Text colors for light theme - darker for better visibility */
+  --theme-text: #1a1d1b;
+  --theme-text-secondary: #2d3431;
+  
+  /* Border colors */
+  --theme-border-color: #e4e6e4;
+  
+  /* Override default theme to light */
+  color-scheme: light;
 }
 
 body {
   font-size: 1rem;
+  background-color: var(--theme-elevation-100);
+}
+
+/* Force light theme on admin panel */
+[data-theme="dark"] {
+  color-scheme: light !important;
+}
+
+/* Table content - Much darker text for better visibility */
+table td,
+table th {
+  color: #1a1d1b !important;
+  font-weight: 500 !important;
+}
+
+table th {
+  font-weight: 600 !important;
+  color: #0f120f !important;
+}
+
+/* Table links */
+table a {
+  color: #1a1d1b !important;
+  font-weight: 500 !important;
+}
+
+table a:hover {
+  color: var(--theme-success-600) !important;
+}
+
+/* Boolean values (true/false) */
+table td[class*="cell"] code,
+table td code {
+  color: #0f120f !important;
+  font-weight: 600 !important;
+  background-color: var(--theme-elevation-100) !important;
+  padding: 0.25rem 0.5rem !important;
+  border-radius: 0.25rem !important;
 }
