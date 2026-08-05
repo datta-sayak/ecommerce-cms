@@ -31,9 +31,12 @@ function CategoriesCarousel() {
       className="mx-auto w-full px-8 sm:px-10 lg:px-0"
     >
       <CarouselContent className="-ml-3 md:-ml-5">
-        {categories.map((category) => {
+        {categories.map((category, index) => {
           const coverImage = typeof category.coverImage === 'object' ? category.coverImage : null;
           const imageUrl = coverImage?.url || '/jute-bag.png';
+          // Cycle through bag icons 1-6
+          const bagIconNumber = (index % 6) + 1;
+          const bagIconUrl = `/assets/bag-${bagIconNumber}.png`;
 
           return (
             <CarouselItem
@@ -56,7 +59,14 @@ function CategoriesCarousel() {
 
                   {/* Green Circle Icon - Positioned Overlapping */}
                   <div className="relative z-10 flex justify-center -mt-5 md:-mt-6">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-full border-[3.5px] border-white bg-primary-green md:h-16 md:w-16">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full border-4 border-white bg-primary-green md:h-16 md:w-16">
+                      <Image
+                        src={bagIconUrl}
+                        alt="Bag icon"
+                        width={32}
+                        height={32}
+                        className="h-6 w-6 md:h-8 md:w-8 object-contain"
+                      />
                     </div>
                   </div>
 

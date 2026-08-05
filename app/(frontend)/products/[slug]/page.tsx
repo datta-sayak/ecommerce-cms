@@ -49,12 +49,20 @@ async function getProduct(slug: string) {
   const payload = await getPayload({ config });
   
   try {
-    const productCode = getProductCodeFromSlug(slug);
+    const productCodeFromSlug = getProductCodeFromSlug(slug);
 
+    // Use regex for case-insensitive matching in PostgreSQL
     const result = await payload.find({
       collection: 'products',
       where: {
-        'specifications.code': { equals: productCode },
+        and: [
+          { active: { equals: true } },
+          {
+            'specifications.code': {
+              like: productCodeFromSlug,
+            },
+          },
+        ],
       },
       depth: 2,
       limit: 1,
@@ -62,7 +70,7 @@ async function getProduct(slug: string) {
     });
 
     const product = result.docs[0];
-    if (!product || !product.active) {
+    if (!product) {
       return null;
     }
 

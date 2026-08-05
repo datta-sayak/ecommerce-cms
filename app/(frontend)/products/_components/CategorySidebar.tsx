@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { Menu } from 'lucide-react';
 import { useAppStore } from '@/store/useAppStore';
-import { getCategorySlug } from '@/utils/productRoutes';
+import { getCategorySlug, normalizeCategorySlug } from '@/utils/productRoutes';
 import { CategorySidebarSkeleton } from './Skeletons';
 
 type Props = {
@@ -40,20 +40,27 @@ export default function CategorySidebar({ selectedCategorySlug }: Props) {
             </Link>
           </li>
 
-          {categories.map((category) => (
-            <li key={category.id}>
-              <Link
-                href={`/products?category=${getCategorySlug(category.name)}`}
-                className={`block rounded-lg px-4 py-2 transition ${
-                  getCategorySlug(category.name) === selectedCategorySlug
-                    ? 'bg-primary-green font-semibold text-white'
-                    : 'text-gray-700 hover:bg-[#E9F0EC]'
-                }`}
-              >
-                {category.name}
-              </Link>
-            </li>
-          ))}
+          {categories.map((category) => {
+            const categorySlug = getCategorySlug(category.name);
+            const isActive = selectedCategorySlug 
+              ? normalizeCategorySlug(categorySlug) === normalizeCategorySlug(selectedCategorySlug)
+              : false;
+            
+            return (
+              <li key={category.id}>
+                <Link
+                  href={`/products?category=${categorySlug}`}
+                  className={`block rounded-lg px-4 py-2 transition ${
+                    isActive
+                      ? 'bg-primary-green font-semibold text-white'
+                      : 'text-gray-700 hover:bg-[#E9F0EC]'
+                  }`}
+                >
+                  {category.name}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </aside>

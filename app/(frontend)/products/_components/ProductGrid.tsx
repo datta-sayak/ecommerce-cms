@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { ChevronRight } from 'lucide-react';
 import { useAppStore } from '@/store/useAppStore';
 import type { Category, Media } from '@/payload-types';
-import { getProductSlug, getCategorySlug, getCategoryNameFromSlug } from '@/utils/productRoutes';
+import { getProductSlug, getCategorySlug, getCategoryNameFromSlug, normalizeCategorySlug } from '@/utils/productRoutes';
 import { ProductGridSkeleton } from './Skeletons';
 
 type Props = {
@@ -37,13 +37,19 @@ export default function ProductGrid({ selectedCategorySlug }: Props) {
   let filteredProducts = allProducts;
 
   if (selectedCategorySlug) {
+    const normalizedSelectedSlug = normalizeCategorySlug(selectedCategorySlug);
+    
     const matched = categories.find(
-      (cat) => getCategorySlug(cat.name) === selectedCategorySlug,
+      (cat) => normalizeCategorySlug(getCategorySlug(cat.name)) === normalizedSelectedSlug,
     );
     if (matched) {
+      // Category found, filter products by category ID
       filteredProducts = allProducts.filter(
         (p) => getCategoryId(p.category) === matched.id,
       );
+    } else {
+      // Category slug provided but no match found, show empty
+      filteredProducts = [];
     }
   }
 
