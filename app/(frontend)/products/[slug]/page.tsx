@@ -211,6 +211,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
                     src={getMediaURL(relatedProduct.coverImage)}
                     alt={relatedProduct.name}
                     fill
+                    quality={60}
                     sizes="(min-width: 768px) 30vw, 92vw"
                     className="object-cover transition-transform duration-300 group-hover:scale-105"
                   />

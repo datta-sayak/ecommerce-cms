@@ -46,6 +46,7 @@ export default function ProductGallery({ images, productName }: ProductGalleryPr
           src={heroImage?.url || '/assets/bag.png'}
           alt={heroImage?.alt || productName}
           fill
+          quality={60}
           sizes="(min-width: 1024px) 50vw, 92vw"
           className="object-contain"
           priority
@@ -66,6 +67,7 @@ export default function ProductGallery({ images, productName }: ProductGalleryPr
                 src={image.url || '/assets/bag.png'}
                 alt={image.alt || productName}
                 fill
+                quality={60}
                 sizes="(min-width: 1024px) 12vw, 24vw"
                 className="object-cover"
               />
@@ -97,6 +99,7 @@ export default function ProductGallery({ images, productName }: ProductGalleryPr
               src={modalImage.url || '/assets/bag.png'}
               alt={modalImage.alt || productName}
               fill
+              quality={60}
               sizes="90vw"
               className="object-contain"
               priority
