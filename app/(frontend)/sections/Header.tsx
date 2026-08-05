@@ -82,7 +82,7 @@ export default function Header() {
                 EN / हार
               </button>
               <Link
-                href="/contact"
+                href="/quote"
                 className="flex-1 px-3 py-2 bg-primary-green text-white rounded-lg font-semibold hover:opacity-90 transition text-xs text-center"
               >
                 Contact

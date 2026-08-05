@@ -70,6 +70,9 @@ const localBusinessSchema = {
 export const metadata: Metadata = {
   title: "Soujata Exim - Eco-Friendly Jute, Cotton & Canvas Bags Manufacturer | India Exporter",
   description: "Leading Indian manufacturer & exporter of sustainable jute bags, cotton totes, canvas bags & eco-friendly packaging solutions. Custom designs, low MOQs, export ready.",
+  icons: {
+    icon: "/logo.png",
+  },
   keywords: "jute bags, cotton tote bags, eco-friendly bags, sustainable packaging, canvas bags, India exporter, custom bags, biodegradable bags",
   authors: [{ name: "Soujata Exim" }],
   creator: "Soujata Exim",
