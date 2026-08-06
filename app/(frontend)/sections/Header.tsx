@@ -46,7 +46,7 @@ export default function Header() {
               EN / हार
             </button>
             <Link
-              href="/contact"
+              href="/quote"
               className="px-4 md:px-6 py-2 bg-primary-green text-white rounded-lg font-semibold hover:opacity-90 transition text-xs md:text-sm"
             >
               Contact

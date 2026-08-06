@@ -78,7 +78,7 @@ export default function HeroSection() {
                   <ChevronRight className="w-5 h-5" />
                 </Link>
                 <Link
-                  href="/contact"
+                  href="/quote"
                   className="flex items-center bg-white px-4 md:px-8 py-1 md:py-2 rounded-lg font-semibold transition-colors border-2 border-primary-dark text-primary-dark hover:bg-primary-dark hover:text-white text-sm md:text-base whitespace-nowrap"
                 >
                   Contact Us
