@@ -52,9 +52,9 @@ export default function BehindOurCraft() {
                 <Image
                   src={image}
                   alt={`Craft process ${i + 1}`}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 256px, 320px"
+                  width={550}
+                  height={700}
+                  className="w-full h-full object-cover"
                 />
               </MarqueeItem>
             ))}
